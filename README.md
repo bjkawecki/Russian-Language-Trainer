@@ -1,4 +1,4 @@
-# Bajkal-App
+# Russian Language Trainer 'Bajkal'
 
 ![Python](https://img.shields.io/badge/Python-FFD43B?style=flat-square&logo=python&logoColor=blue)
 ![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=green)
@@ -10,7 +10,7 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
 ![Numpy](https://img.shields.io/badge/Numpy-777BB4?style=flat-square&logo=numpy&logoColor=white)
 
-**Bajkal-App** ist eine Webanwendung zum Russischlernen. Sie kombiniert moderne Sprachlerntechniken wie Spaced Repetition, automatisierte Lernstapel, Audio-Unterstützung und Fortschrittsverfolgung und beinhaltet App-Features wie Kursbuchung und Benutzerkonten.
+**Bajkal** ist eine Webanwendung zum Russischlernen. Sie kombiniert moderne Sprachlerntechniken wie Spaced Repetition, automatisierte Lernstapel, Audio-Unterstützung und Fortschrittsverfolgung und beinhaltet App-Features wie Kursbuchung und Benutzerkonten.
 
 ---
 
@@ -39,16 +39,3 @@ Geplant:
 - **Datenbank:** PostgreSQL
 - **Queueing:** Redis + Celery
 - **Deployment:** Docker Compose mit Nginx Reverse Proxy
-
----
-
-## Lokale Entwicklung starten
-
-Voraussetzung: [Docker](https://www.docker.com/) & [Docker Compose](https://docs.docker.com/compose/)
-
-```bash
-git clone git@github.com:dein-user/bajkal-app.git
-cd bajkal-app
-cp .env.example .env    # eigene Umgebungsvariablen setzen
-docker-compose up --build
-```
