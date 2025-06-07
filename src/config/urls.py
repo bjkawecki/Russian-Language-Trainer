@@ -7,7 +7,7 @@ from config.settings.common import ADMIN_URL, DEBUG
 from config.views import Error404, Error500, Maintenance
 
 urlpatterns = [
-    path(f"{ADMIN_URL}", admin.site.urls),
+    path(f"{ADMIN_URL}/", admin.site.urls),
     path("404", Error404.as_view(), name="error_404"),
     path("500", Error500.as_view(), name="error_500"),
     path("maintenance", Maintenance.as_view(), name="maintenance"),

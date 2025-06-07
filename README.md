@@ -10,6 +10,8 @@
 ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)
 ![Numpy](https://img.shields.io/badge/Numpy-777BB4?style=flat-square&logo=numpy&logoColor=white)
 
+![logo](assets/logo.png)
+
 **Bajkal** ist eine Webanwendung zum Russischlernen. Sie kombiniert moderne Sprachlerntechniken wie Spaced Repetition, automatisierte Lernstapel, Audio-Unterstützung und Fortschrittsverfolgung und beinhaltet App-Features wie Kursbuchung und Benutzerkonten.
 
 ---
