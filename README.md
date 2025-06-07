@@ -35,7 +35,7 @@ Geplant:
 ## Tech-Stack
 
 - **Backend:** Django + Gunicorn
-- **Frontend:** Django Templates
+- **Frontend:** Django Templates + HTMX
 - **Datenbank:** PostgreSQL
 - **Queueing:** Redis + Celery
 - **Deployment:** Docker Compose mit Nginx Reverse Proxy
