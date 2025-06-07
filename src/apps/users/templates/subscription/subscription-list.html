@@ -1,0 +1,55 @@
+<div class="my-5" id="course_list_table">
+    {% if not courses %}
+        <div class="mb-3 text-gray-500">Keine Kurse</div>
+    {% else %}
+        <table class="mb-4 w-full text-sm text-left text-gray-800 dark:text-white  rtl:text-right">
+            <thead class="text-xs text-gray-800 uppercase bg-gray-200 dark:text-white  dark:bg-gray-700">
+                <tr>
+                    <th class="py-3 px-6">Kurs</th>
+                    <th class="py-3 px-6">Stufe</th>
+                    <th class="py-3 px-6">Stapel</th>
+                    <th class="py-3 px-6">Karten</th>
+                    <th class="py-3 px-6"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for course, exists in courses.items %}
+                    <tr class="bg-white border-gray-200 dark:bg-gray-900 dark:border-gray-700">
+                        <td class="py-3 px-6">{{ course.get_name_display }}</td>
+                        <td class="py-3 px-6">{{ course.name }}</td>
+                        <td class="py-3 px-6">{{ course.quantity_of_decks }}</td>
+                        <td class="py-3 px-6">{{ course.quantity_of_cards }}</td>
+                        {% if exists %}
+                            <td hx-get="{% url 'cancel_course' course.name %}"
+                                hx-trigger="click"
+                                hx-target="#course_list_table"
+                                hx-swap="outerHTML"
+                                class="py-3">
+                                <button class="flex justify-center py-1 px-5 w-32 h-7 text-sm font-semibold text-gray-800 bg-red-600 rounded-lg dark:text-white  hover:bg-red-700 focus:ring-2 focus:outline-none focus:ring-red-800"
+                                        onclick="changeSubscriptionLoader({{ course.name }}, {{ course.quantity_of_cards }})"
+                                        id="loading_after_submit_delete_button_{{ course.name }}">Stornieren</button>
+                            </td>
+                        {% else %}
+                            <td class="py-3"
+                                hx-get="{% url 'subscribe_course' course.name %}"
+                                hx-target="#course_list_table"
+                                hx-swap="outerHTML">
+                                <button class="flex justify-center py-1 px-5 w-32 h-7 text-sm font-semibold text-gray-800 bg-blue-400 rounded-lg dark:text-white  dark:bg-blue-600 dark:hover:bg-blue-700 hover:bg-blue-500 focus:outline-none dark:focus:ring-blue-800 focus:ring-blue-600 focus:ring-2"
+                                        onclick="changeSubscriptionLoader({{ course.name }}, {{ course.quantity_of_cards }})"
+                                        id="loading_after_submit_button_{{ course.name }}">Abonnieren</button>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+    <button type="button"
+            hx-get="{% url 'settings' %}"
+            hx-target="#body"
+            hx-push-url="true"
+            hx-swap="outerHTML"
+            class="dark:text-white text-gray-800   focus:outline-none focus:ring-2 font-semibold rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-gray-800 bg-white  dark:hover:bg-gray-700 hover:bg-gray-100 dark:focus:ring-gray-600 focus:ring-gray-300dark:border-gray-700 border-gray-200">
+        Abbrechen
+    </button>
+</div>

@@ -1,0 +1,25 @@
+services:
+  webapp:
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    entrypoint: ["/bin/bash", "-e", "entrypoint.sh"]
+    command: 'gunicorn config.wsgi:application --bind [::]:8001 --worker-tmp-dir /dev/shm --timeout 300 --workers 9'
+    volumes:
+      - bajkal_volume://volume
+    expose:
+      - 8001
+  nginx:
+    restart: always
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile
+    volumes:
+      - bajkal_volume:/volume
+      - nginx_logs:/var/log/nginx  # Log-Dateien vom Container auf den Host weiterleiten
+    depends_on:
+      - webapp
+volumes:
+  bajkal_volume:
+  nginx_logs:

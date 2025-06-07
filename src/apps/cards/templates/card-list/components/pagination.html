@@ -1,0 +1,68 @@
+<nav class="flex flex-col justify-between items-start p-4 space-y-3 md:flex-row md:items-center md:space-y-0"
+     aria-label="Table navigation">
+    <span class="text-sm font-normal text-gray-800 dark:text-white">
+        Anzeige
+        <span class="font-semibold text-gray-800 dark:text-white">{{ page_obj.start_index }}</span>
+        bis
+        <span class="font-semibold text-gray-800 dark:text-white">{{ page_obj.end_index }}</span>
+        von
+        <span class="font-semibold text-gray-800 dark:text-white">{{ page_obj.paginator.count }}</span>
+    </span>
+    <ul class="inline-flex justify-between items-stretch -space-x-px md:w-fit">
+        {% if page_obj.has_previous %}
+            <li>
+                <a href="{% url 'card_list' %}?{% if word_class_filter %}{% for wordclass in word_class_filter %}filter={{ wordclass }}&{% endfor %}{% endif %}{% if searchtext %}search={{ searchtext }}&{% endif %}page={{ page_obj.previous_page_number }}"
+                   class="flex justify-center items-center px-2 py-1.5 ml-0 h-full text-gray-800 rounded-l-lg dark:text-white dark:bg-gray-950 dark:hover:bg-gray-700 hover:bg-gray-100 hover:dark:text-white">
+                    <span class="sr-only">Vorherige</span>
+                    <span class="w-4 h-4">{% include "icons/chevron-left.html" %}</span>
+                </a>
+            </li>
+        {% endif %}
+        <li class="flex justify-center items-center px-1 py-2 text-sm leading-tight text-gray-800 dark:text-white dark:bg-gray-950">
+            Seite
+        </li>
+        <li class="flex justify-center items-center px-2 py-2 text-sm leading-tight">
+            <form action="{% url 'card_list' %}">
+                <div class="flex items-center">
+                    <input type="number"
+                           id="quantity"
+                           name="page"
+                           value="{{ page_obj.number }}"
+                           class="p-0 pl-2 w-10 h-8 text-sm rounded-l-lg border-0 shadow dark:shadow-none"
+                           min="1"
+                           max="{{ page_obj.paginator.num_pages }}"
+                           step="1" />
+                    <button type="submit"
+                            class="flex justify-center items-center w-8 h-8 bg-blue-500 rounded-r-lg">
+                        <span class="w-5 h-5 fill-white">{% include "icons/magnify.html" %}</span>
+                    </button>
+                </div>
+                {% with request.GET.order as current_order %}
+                    {% if current_order == "desc" %}
+                        <input name="order" value="desc" hidden />
+                    {% else %}
+                        <input name="order" value="asc" hidden />
+                    {% endif %}
+                {% endwith %}
+                {% if searchtext %}<input name="search" value="{{ searchtext }}" hidden />{% endif %}
+                {% for wordclass in word_class_filter %}<input name="filter" value="{{ wordclass }}" hidden />{% endfor %}
+            </form>
+        </li>
+        <li class="flex justify-center items-center px-2 py-2 text-sm leading-tight text-gray-800 dark:text-white dark:bg-gray-950">
+            von
+        </li>
+        <li>
+            <a href="{% url 'card_list' %}?{% if word_class_filter %}{% for wordclass in word_class_filter %}filter={{ wordclass }}&{% endfor %}{% endif %}{% if searchtext %}search={{ searchtext }}&{% endif %}{% with request.GET.order as current_order %}{% if current_order == 'desc' %}order=desc{% else %}order=asc{% endif %}{% endwith %}&page={{ page_obj.paginator.num_pages }}"
+               class="flex justify-center items-center px-2 py-1.5 h-full text-sm leading-tight text-gray-800 dark:text-white dark:bg-gray-950 dark:hover:bg-gray-700 hover:bg-gray-100 hover:dark:text-white">{{ page_obj.paginator.num_pages }}</a>
+        </li>
+        {% if page_obj.has_next %}
+            <li>
+                <a href="{% url 'card_list' %}?{% if word_class_filter %}{% for wordclass in word_class_filter %}filter={{ wordclass }}&{% endfor %}{% endif %}{% if searchtext %}search={{ searchtext }}&{% endif %}{% with request.GET.order as current_order %}{% if current_order == 'desc' %}order=desc{% else %}order=asc{% endif %}{% endwith %}&page={{ page_obj.next_page_number }}"
+                   class="flex justify-center items-center px-2 py-1.5 h-full leading-tight text-gray-800 rounded-r-lg dark:text-white dark:bg-gray-950 dark:hover:bg-gray-700 hover:bg-gray-100 hover:dark:text-white">
+                    <span class="sr-only">Nächste</span>
+                    <span class="w-4 h-4">{% include "icons/chevron-right.html" %}</span>
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+</nav>

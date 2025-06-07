@@ -1,0 +1,56 @@
+<form id="study_form"
+      method="post"
+      hx-swap="outerHTML"
+      hx-post="{{ request.get_full_path }}"
+      hx-target="#study_form"
+      hx-include="[name='due_card_id']">
+    {% csrf_token %}
+    <div class="h-4 md:h-8"></div>
+    <div class="flex items-center mt-0 md:mt-5">
+        <input id="id_card_word_name"
+               class="block p-2.5 my-2 w-full text-lg placeholder-gray-400 text-gray-800 bg-white rounded-lg border border-gray-200 ps-2.5 dark:bg-gray-900 dark:border-gray-700 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:border-blue-400 focus:ring-blue-400"
+               type="text"
+               name="card_word_name"
+               maxlength="50"
+               required
+               autofocus
+               autocomplete="off">
+        <input type="hidden" value="{{ due_card_id }}" name="due_card_id">
+    </div>
+    <div>
+        <div class="mb-3 h-6 text-sm font-semibold dark:text-red2-500 text-red2-400 md:h-12">
+            {% for error in form.card_word_name.errors %}{{ error }}{% endfor %}
+            <div class="flex mb-5 text-sm text-gray-500">
+                {% if due_card.word.word.comment %}<div>{{ due_card.word.word.comment }}</div>{% endif %}
+                {% if due_card.word.word.usage %}<div>{{ due_card.word.word.get_usage_display }}</div>{% endif %}
+            </div>
+        </div>
+        <div class="flex flex-row justify-between">
+            <button type="submit"
+                    hx-swap="outerHTML"
+                    hx-post="{% if 'turbo' in request.path %}{% url 'skip_turbo' due_card_id %}{% else %}{% url 'skip' due_card.word.deck.id %}{% endif %}"
+                    hx-target="#study_form"
+                    hx-include="[name='due_card_id']"
+                    hx-on:click="showspinner('skip_button')"
+                    id="skip_button"
+                    class="px-3 py-2.5 text-sm font-semibold text-center text-gray-800 bg-white rounded-lg border border-gray-600 dark:text-gray-400 focus:ring-2 focus:outline-none hover:dark:text-white hover:dark:bg-gray-800 dark:bg-gray-900 dark:focus:ring-gray-700 focus:ring-gray-100 dark:active:bg-gray-700 active:bg-gray-100">
+                <div class="w-5 h-5 dark:fill-gray-400 fill-gray-600">{% include "icons/eye.html" %}</div>
+            </button>
+            <button type="submit"
+                    class="flex justify-center items-center px-3 py-2.5 w-24 h-10 text-sm font-semibold text-center text-gray-800 bg-blue-400 rounded-lg dark:text-white dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 active:text-gray-300 focus:ring-2 focus:outline-none dark:focus:ring-blue-800 focus:ring-blue-600">
+                Prüfen
+            </button>
+        </div>
+    </div>
+</form>
+<script>
+    function showspinner(id) {
+        let studysubmitbutton = document.getElementById(id);
+        studysubmitbutton.innerHTML = `
+        <div class="w-5 h-5 dark:fill-white fill-white spinner">{% include "icons/dots-circle.html" %}</div>
+        `;
+
+        let studyinput = document.getElementById("id_card_word_name");
+        studyinput.classList.add("bg-gray-600", "cursor-not-allowed");
+    }
+</script>

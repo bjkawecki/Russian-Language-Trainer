@@ -1,0 +1,6 @@
+{% if show_welcome_modal %}
+    <div hx-trigger="load"
+         hx-get="{% url 'show_welcome_modal' %}"
+         hx-swap="outerHTML"
+         hx-target="#welcome-modal-content">{% include "welcome_modal.html" %}</div>
+{% endif %}

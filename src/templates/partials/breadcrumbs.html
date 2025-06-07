@@ -1,0 +1,16 @@
+<nav class="flex" aria-label="Breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+        <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
+            <li aria-current="page">
+                {% if forloop.first %}
+                    <span class="font-semibold text-gray-600 dark:text-gray-400">{{ breadcrumb }}</span>
+                {% else %}
+                    <div class="flex items-center">
+                        {% include "icons/menu-right.html" %}
+                        <span class="font-semibold text-gray-600 dark:text-gray-400">{{ breadcrumb }}</span>
+                    </div>
+                {% endif %}
+            </li>
+        </ol>
+    {% endfor %}
+</nav>

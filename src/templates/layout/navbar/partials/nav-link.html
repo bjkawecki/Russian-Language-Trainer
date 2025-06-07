@@ -1,0 +1,4 @@
+<a href="{% url url %}"
+   class="flex box-border p-2 {% if path in request.path %}border-b-2 border-blue-500 pb-0.5 {% else %}pb-1{% endif %}">
+    <div class="flex items-center h-12 font-medium tracking-wide hover:dark:text-gray-200">{{ link_text }}</div>
+</a>

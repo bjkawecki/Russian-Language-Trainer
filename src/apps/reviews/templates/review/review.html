@@ -1,0 +1,19 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Lernen – Bajkal
+{% endblock title %}
+{% load static %}
+{% block content %}
+    {% if due_card %}
+        <div class="flex flex-row justify-center px-4 mt-10 md:mt-20 basis-full">
+            <div class="px-2.5 py-2.5 bg-white rounded-lg border border-gray-200 shadow-sm md:px-10 md:py-5 dark:border-none dark:bg-gray-900 lg:basis-1/2 xl:basis-1/3 md:basis-3/4 basis-full h-fit">
+                {% include "review/components/header.html" %}
+                {% include "review/components/card-info.html" %}
+                {% include "review/components/form.html" %}
+                {% include "review/components/scripts.html" %}
+            </div>
+        </div>
+    {% else %}
+        {% include "review/components/empty-stack.html" %}
+    {% endif %}
+{% endblock content %}

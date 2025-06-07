@@ -1,0 +1,64 @@
+<div class="flex flex-col p-3 text-gray-800 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:text-white dark:bg-gray-800">
+    <div class="flex col-span-1 px-3 py-1">
+        <div class="text-lg font-semibold text-gray-800 dark:text-gray-100">Konto</div>
+    </div>
+    <div class="col-span-4">
+        <a href="{% url 'change_username' %}">
+            <div class="flex justify-between items-center px-3 py-1.5 mb-2 rounded-lg dark:hover:bg-gray-600 hover:bg-gray-50">
+                <div class="flex flex-col">
+                    <div class="text-sm text-gray-600 dark:text-gray-300">Name</div>
+                    <div class="font-medium text-gray-800 dark:text-white">{{ user.get_full_name }}</div>
+                </div>
+                {% include "icons/menu-right.html" %}
+            </div>
+        </a>
+        <a href="{% url 'change_email' %}">
+            <div class="flex justify-between items-center px-3 py-1.5 mb-2 rounded-lg dark:hover:bg-gray-600 hover:bg-gray-50">
+                <div class="flex flex-col">
+                    <div class="text-sm text-gray-600 dark:text-gray-300">E-Mail-Adresse</div>
+                    <div class="font-medium text-gray-800 dark:text-white">{{ user.email }}</div>
+                </div>
+                {% include "icons/menu-right.html" %}
+            </div>
+        </a>
+        <a href="{% url 'change_password' %}">
+            <div class="flex justify-between items-center px-3 py-1.5 mb-2 rounded-lg dark:hover:bg-gray-600 hover:bg-gray-50">
+                <div class="flex flex-col">
+                    <div class="text-sm text-gray-600 dark:text-gray-300">Passwort</div>
+                    <div class="font-medium text-gray-800 dark:text-white">••••••••</div>
+                </div>
+                {% include "icons/menu-right.html" %}
+            </div>
+        </a>
+        <div class="flex justify-between items-center px-3 py-1.5 mb-2 rounded">
+            <div class="flex flex-col">
+                <div class="text-sm text-gray-600 dark:text-gray-300">Abonnement</div>
+                <div class="font-medium text-gray-800 dark:text-white">
+                    {% if user.has_course %}
+                        {% for course in user.get_user_courses %}
+                            {% if not forloop.last %}
+                                {{ course }},
+                            {% else %}
+                                {{ course }}
+                            {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        Kein Abonnement
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="flex justify-between items-end px-3 py-1.5 mb-2 rounded">
+            <div class="flex flex-col">
+                <div class="text-sm text-gray-600 dark:text-gray-300">Registriert seit</div>
+                <div class="font-medium text-gray-800 dark:text-white">{{ user.date_joined|date:"d. F Y" }}</div>
+            </div>
+            <a href="{% url 'delete_account' %}">
+                <button type="button"
+                        class="px-3 py-1.5 text-sm font-semibold text-white rounded-lg shadow-sm dark:text-white focus:outline-none focus:ring-2 dark:bg-red2-600 hover:dark:bg-red2-700 bg-red2-500 hover:bg-red2-600 focus:ring-red2-700">
+                    Konto löschen
+                </button>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="flex flex-col p-4 w-full h-60 text-gray-800 bg-white rounded-lg shadow-sm md:w-1/2 dark:border-gray-900 dark:bg-gray-900 dark:text-white">
+    <div class="flex justify-between items-center">
+        <div class="py-2 pl-2 text-lg font-medium">Heute</div>
+    </div>
+    <div class="flex flex-col pt-1 pb-5 pl-2 space-y-1 text-base md:pb-0">
+        <div>
+            {% if not todays_review.reviewed_cards %}
+                <p>Sie haben heute noch keine Karten gelernt.</p>
+            {% else %}
+                <p>
+                    Sie haben heute {{ todays_review.reviewed_cards }} Karte{% if todays_review.reviewed_cards != 1 %}n{% endif %} gelernt.
+                </p>
+            </div>
+            <div class="flex flex-col">
+                <div>Neu: {{ todays_review.initial_cards }}</div>
+                <div>Aktiv: {{ todays_review.in_progress_cards }}</div>
+                <div>Gemeistert: {{ todays_review.mastered_cards }}</div>
+            {% endif %}
+        </div>
+    </div>
+</div>

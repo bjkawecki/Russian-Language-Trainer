@@ -1,0 +1,90 @@
+name: bajkal
+services:
+  webapp:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.dev
+    entrypoint: ["/bin/bash", "-e", "entrypoint.sh"]
+    command: python manage.py runserver 0.0.0.0:8001
+    image: webapp-1:latest
+    volumes:
+      - ../src:/app
+      - ../volume:/volume
+    expose:
+      - 8001
+    ports:
+      - 8001:8001
+    # depends_on:
+    #   db_dev:
+    #     condition: service_healthy
+    #   redis:
+    #     condition: service_healthy
+    env_file:
+      - ../project/env/.env.dev
+
+  nginx:
+    build:
+      context: ../nginx
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ../volume/staticfiles:/volume/staticfiles # Binde das Volume
+      - ../volume/mediafiles:/volume/mediafiles # Binde das Volume
+
+    ports:
+      - "80:80"
+    depends_on:
+      - webapp
+
+  redis:
+    image: redis:7.4.1
+    healthcheck:
+      test: ["CMD", "redis-cli", "--raw", "incr", "ping"]
+
+  celery_worker:
+    env_file:
+      - ../project/env/.env.dev
+    image: webapp-1:latest
+    command: celery -A config worker -l info -E
+    volumes:
+      - ../src:/app
+      - ../volume:/volume
+    depends_on:
+      db_dev:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  celery_beat:
+    env_file:
+      - ../project/env/.env.dev
+    image: webapp-1:latest
+
+    command: celery -A config worker -l info -E --scheduler django_celery_beat.schedulers:DatabaseScheduler
+    volumes:
+      - ../src:/app
+      - ../volume:/volume
+    depends_on:
+      db_dev:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  db_dev:
+    image: postgres:15.4-alpine
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 3s
+      retries: 5
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=trainer_docker_dev
+
+volumes:
+  postgresql-data:
+    driver: local

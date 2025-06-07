@@ -1,0 +1,14 @@
+{% extends "layout/main.html" %}
+{% load static %}
+{% block title %}
+    Datenimport – Bajkal
+{% endblock title %}
+{% block content %}
+    <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+        {% include "layout/partials/page-title.html" with page_title="Import" %}
+        <div class="flex flex-col space-y-4">
+            <div>{% include "components/course/import-form.html" %}</div>
+            <div>{% include "components/proverb/import-form.html" %}</div>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,132 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Hilfe – Bajkal
+{% endblock title %}
+{% block content %}
+    <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+        {% include "layout/partials/page-title.html" with page_title="Häufig gestellte Fragen" %}
+        <div class=" md:h-[75vh] md:pb-0 pb-28 mt-8 overflow-y-auto  h-max flex flex-col font-semibold tracking-wide dark:text-white text-gray-800  w-fit">
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Was ist Bajkal?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Bajkal ist ein digitales, kostenpflichtiges Angebot zum Lernen russischer Vokabeln.
+                        Die Grundfunktion ist vergleichbar mit einem analogen Lernkartei-System.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Ist Bajkal für mich geeignet?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Ob Schüler, Student oder Autodidakt – Bajkal ist für jeden geeignet, der effektiv und systematisch
+                        Russisch lernen will.
+                        Durch den Überblick über den eigenen Lernfortschritt bezüglich einer einzelnen Vokabel oder einer
+                        Lernstufe, den Bajkal bietet,
+                        wird das Russischstudium erleichtert.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Reicht Bajkal, um Russisch zu lernen?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Russisch ist wie jede Sprache ein komplexes System aus Zeichen und Bedeutungen.
+                        Vokabeln sind zwar ein äußerst wichtiger, aber nicht der Einzige Teil dieses Systems.
+                    </p>
+                    <p>
+                        Insbesondere Anfängern empfehlen wir daher, Bajkal ergänzend zur Teilnahme an einem Sprachkurs zu
+                        nutzen.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Wie nutze ich Bajkal?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Auf der Startseite erhalten Sie eine Übersicht über Ihre verfügbaren Stapel mit Lernkarten.
+                        Nähere Informationen über einzelne Karten, Stapel, Kurse und ihren Fortschritt finden Sie unter den
+                        jeweiligen Punkten im Menü.
+                    </p>
+                    <p>
+                        Noch nicht begonnene Stapel finden Sie auf der Startseite unter dem Reiter "Neu".
+                        Stapel, die zu wiederholende Karten enthalten, erscheinen unter dem Reiter "Fällig".
+                    </p>
+                    <p>
+                        Klicken Sie einfach auf einen Stapel, um mit dem Lernen zu beginnen, oder auf "Alle lernen", um alle
+                        Stapel mit fälligen Karten ohne Unterbrechung zu lernen.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Wie funktioniert das Lernsystem von Bajkal?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Das Lernsystem von Bajkal entspricht der "verteilten Wiederholung".
+                        Das bedeutet, dass bekannte Wörter stetig seltener wiederholt werden.
+                    </p>
+                    <p>
+                        Je näher der Zeitpunkt der Wiederholung und der Zeitpunkt, an dem man das Wort vergessen hätten,
+                        aneinanderliegen, desto besser.
+                        Auf diese Weise wird das Langzeitgedächtnis herausgefordert und trainiert.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Wie erhalte ich Stapel?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Stapel mit Lernkarten erhalten Sie, indem Sie einen Kurs abonnieren – im Monats- oder
+                        Jahresabonnement.
+                        Eine Übersicht über die aktuell verfügbaren Abonnements finden Sie unter dem entsprechenden
+                        Menüpunkt.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Wie bezahle ich Abonnements?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Für eine effiziente und sichere Zahlungsabwicklung nutzt Bajkal den Dienstleister <span class="italic">Stripe</span>.
+                        Stripe integriert zahlreiche andere Dienstleister für Zahlungsverkehr in sein System und zählt zu
+                        den größten Anbietern seiner Art weltweit.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Speichert Bajkal die Daten meiner Bank?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Nein. Die Abwicklung der Bezahlung erfolgt vollständig über Stripe.
+                        Wir speichern lediglich die Daten, die wir von Stripe erhalten und uns, zum Beispiel, über den
+                        Status
+                        Ihrer Zahlung informieren.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Wie schreibe ich mit kyrillischen Buchstaben?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    <p>
+                        Wie Sie Ihre Tastatur auf ihrem Betriebssystem auf Kyrillisch umstellen können,
+                        erfahren Sie über eine kurze Suche mit Ihrer bevorzugten Suchmaschine.
+                    </p>
+                    <p>
+                        Um die russische Tastaturbelegung zu üben, empfehlen wir Tastaturaufkleber,
+                        die sich bereits für wenige Euro im Netz bestellen lassen.
+                    </p>
+                </div>
+            </div>
+            <div class="flex flex-col p-6 mr-0 mb-5 space-x-0 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:mr-5 md:flex-row md:space-x-10">
+                <div class="font-medium md:basis-1/3 basis-full">Haben Sie noch Fragen, Anregungen, Lob oder Kritik?</div>
+                <div class="space-y-2 font-normal text-gray-800 dark:text-gray-100 md:basis-2/3 basis-full">
+                    Zögern Sie nicht, unser <a href="{% url 'contact_form' %}"
+    class="font-semibold text-blue-400 hover:underline">Kontaktformular</a> zu nutzen oder schreiben Sie
+                    direkt an <a href="mailto:kontakt@bajkal-app.de"
+    class="font-semibold text-blue-400 hover:underline">kontakt@bajkal-app.de</a>. Wir freuen uns, von
+                    Ihnen zu hören!
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

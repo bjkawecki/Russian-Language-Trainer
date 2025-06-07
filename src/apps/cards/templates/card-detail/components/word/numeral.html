@@ -1,0 +1,10 @@
+<div class="flex flex-wrap gap-5 pt-2.5 text-xl md:gap-0 md:space-x-10">
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Typ</div>
+        <div>{{ card.word.feature.get_numeral_type_display|default:"–" }}</div>
+    </div>
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Deklination</div>
+        <div>{{ card.word.feature.get_declination_type_display|default:"–" }}</div>
+    </div>
+</div>

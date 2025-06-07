@@ -1,0 +1,54 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Beispiele anzeigen – Bajkal
+{% endblock title %}
+{% block content %}
+    <div class="md:basis-9/12 basis-full rounded-lg h-fit px-4">
+        {% include "layout/partials/back-to-start.html" %}
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center rtl:space-x-reverse">
+                <li aria-current="page">
+                    <a href="{% url 'settings' %}">
+                        <span class="font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-500">Einstellungen</span>
+                    </a>
+                </li>
+                <li>
+                    <div class="flex items-center">
+                        {% include "icons/menu-right.html" %}
+                        <span class="font-semibold text-gray-600 dark:text-gray-400">Anzeige der Beispiele ändern</span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+        <div class="mt-5">
+            <form method="post" action="{% url 'change_show_examples' %}">
+                {% csrf_token %}
+                <div class="py-5 px-6 bg-white rounded-lg border border-gray-50 shadow-sm dark:bg-gray-900 ">
+                    <div class="mb-1 space-y-2">
+                        <input {% if user.show_examples %}checked{% endif %}
+                               id="id_show_examples"
+                               type="checkbox"
+                               name="show_examples"
+                               class="w-4 h-4 text-blue-600 bg-gray-200 rounded-lg border-gray-600 ring-offset-gray-800 dark:bg-gray-700 focus:ring-blue-600 focus:ring-offset-gray-800 focus:ring-2">
+                        <label for="id_show_examples"
+                               class="text-sm font-semibold text-gray-800 dark:text-white  ms-2">
+                            Beispiele beim Lernen anzeigen
+                        </label>
+                    </div>
+                </div>
+                <div class="mt-2 space-y-2">
+                    <a href="{% url 'settings' %}">
+                        <button type="button"
+                                class="dark:text-white text-gray-800   focus:outline-none focus:ring-2 font-semibold rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-gray-800 bg-white  dark:hover:bg-gray-700 hover:bg-gray-100 dark:focus:ring-gray-600 focus:ring-gray-300dark:border-gray-700 border-gray-200">
+                            Abbrechen
+                        </button>
+                    </a>
+                    <button type="submit"
+                            class="dark:text-white text-gray-800  focus:ring-2 font-semibold rounded-lg text-sm px-3 py-2.5 me-2 mb-2 dark:bg-blue-600 bg-blue-400 dark:hover:bg-blue-700 hover:bg-blue-500 focus:outline-none dark:focus:ring-blue-800  focus:ring-blue-600">
+                        Bestätigen
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}

@@ -1,0 +1,144 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Abonnements – Bajkal
+{% endblock title %}
+{% block content %}
+    {% load my_custom_filters %}
+    {% load static %}
+    <div class="overflow-y-auto px-4 pb-28 rounded-lg md:basis-6/12 basis-full md:pb-10">
+        {% include "layout/partials/back-to-start.html" %}
+        {% include "layout/partials/page-title.html" with page_title="Abonnements" %}
+        {% if BETA %}
+            {% include "layout/partials/page-subtitle.html" with page_subtitle="Bajkal befindet sich in der Beta-Phase. In der Beta-Phase sind keine kostenpflichtigen Abonnements verfügbar." %}
+            {% if course_a1_exists %}
+                {% for course in courses %}
+                    <div class="flex flex-col my-5 space-x-10 text-gray-800 dark:text-white">
+                        <div class="flex flex-col p-6 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:flex-row">
+                            <div class="flex flex-col pt-4 pb-2 space-y-5 border-t border-gray-600 md:pl-6 md:border-0 md:pt-0">
+                                <div class="space-y-5 text-gray-800 dark:text-gray-100">
+                                    <div>
+                                        <h5 class="pb-0.5 text-2xl font-semibold tracking-wide text-gray-800 dark:text-white">
+                                            Kurs
+                                            {{ course.name }}
+                                        </h5>
+                                        <h6 class="text-lg text-gray-700 dark:text-gray-200">{{ course.get_name_display }}</h6>
+                                    </div>
+                                    <ul role="list" class="mx-auto space-y-2">
+                                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                                            <span>{{ course.all_cards }} Vokabeln aus {{ course.all_decks }} Themen</span>
+                                        </li>
+                                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                                            <span>Wörterbuch mit grammatischen Formen</span>
+                                        </li>
+                                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                                            <span>Audiodateien zum Nachhören der Aussprache</span>
+                                        </li>
+                                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                                            <span>Kostenlos</span>
+                                        </li>
+                                    </ul>
+                                    <button hx-get="{% url 'subscribe_a1' %}"
+                                            hx-trigger="click"
+                                            onclick="open_modal('subscribe_modal')"
+                                            hx-swap="outerHTML"
+                                            hx-target="#body"
+                                            class="px-3 py-2.5 h-10 text-sm font-semibold text-white bg-blue-400 rounded-lg hover:bg-blue-500 dark:text-white dark:bg-blue-600 me-2 dark:hover:bg-blue-500 hover-blue-400 active:dark:bg-blue-600">
+                                        Jetzt abonnieren
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div id="subscribe_modal"
+                     data-modal-backdrop="static"
+                     tabindex="-1"
+                     aria-hidden="true"
+                     class="hidden overflow-y-auto overflow-x-hidden fixed inset-0 top-0 right-0 left-0 z-50 justify-center items-center w-full bg-white/60 dark:bg-gray-900/60">
+                    <div class="relative p-4 h-1/2 md:basis-1/3 basis-2/3">
+                        <div class="flex justify-center">
+                            <div class="flex flex-col justify-center items-center p-6 bg-white rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-950">
+                                <h5 class="pb-2 text-xl font-bold tracking-tight text-gray-800 dark:text-white">
+                                    Ihre Karten werden
+                                    synchronisiert.
+                                </h5>
+                                <div class="w-6 h-6 dark:fill-white fill-gray-950 spinner">{% include "icons/dots-circle.html" %}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            <script src="{% static 'js/ui/open_modal.js' %}"></script>
+        {% else %}
+            {% include "layout/partials/page-subtitle.html" with page_subtitle="Wählen Sie einen Plan, der Ihrem Sprachniveau entspricht, oder unterstützen Sie uns mit einem Förderabonnement." %}
+            <div class="grid overflow-y-auto grid-cols-1 gap-4 pr-3 pb-10 my-5 md:grid-cols-2 lg:grid-cols-3">
+                {% for product in products %}
+                    <div class="flex flex-col px-6 py-6 text-center text-gray-800 bg-white rounded-lg dark:text-white dark:bg-gray-800">
+                        <div class="flex flex-col h-24">
+                            <h3 class="mb-1 text-2xl font-semibold">{{ product.name }}</h3>
+                            <p class="font-normal text-gray-600 dark:text-gray-300">{{ product.description }}</p>
+                        </div>
+                        <div class="flex justify-center items-center my-4 h-16">
+                            {% for price in product.prices.all %}
+                                {% if price.recurring.interval == "month" %}
+                                    <div>
+                                        <span class="mr-2 text-4xl font-bold">{{ price.unit_amount|divide:100 }} €</span>
+                                    </div>
+                                    <span class="text-gray-400">/Monat</span>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                        <div class="flex flex-col justify-between h-full">
+                            <ul role="list" class="mb-3 space-y-2 text-left">
+                                {% for feature in product.feature_list %}
+                                    <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                        <div class="shrink-0">{% include "icons/check-decagram-green.html" %}</div>
+                                        <span>{{ feature }}</span>
+                                    </li>
+                                {% endfor %}
+                                {% for extra_feature in product.extra_feature_list %}
+                                    <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                        <div class="shrink-0">{% include "icons/plus-circle-yellow.html" %}</div>
+                                        <span>{{ extra_feature }}</span>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <button price-id="{{ product.price_id }}"
+                                    class="px-3 py-2.5 font-semibold text-center text-gray-800 bg-blue-400 rounded-lg submitSubscriptionButton dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 focus:ring-2 dark:text-white dark:focus:ring-blue-900 focus-ring-blue-600">
+                                Abonnieren
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+                <div class="flex flex-col px-6 py-6 text-center text-gray-800 bg-white rounded-lg dark:text-white dark:bg-gray-800">
+                    <div class="flex flex-col h-24">
+                        <h3 class="mb-1 text-2xl font-semibold">Geschäftskunde</h3>
+                        <p class="font-normal text-gray-600 dark:text-gray-300">Für private und öffentliche Organisationen</p>
+                    </div>
+                    <div class="flex justify-center items-center my-4 h-16">
+                        <span class="mr-2 text-xl font-bold">Nach Vereinbarung</span>
+                    </div>
+                    <div class="flex flex-col justify-between h-full">
+                        <ul role="list" class="space-y-2 text-left">
+                            <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                <div class="shrink-0">{% include "icons/star-purple.html" %}</div>
+                                <span>Abonnements für Ihre Mitarbeiter oder Kunden</span>
+                            </li>
+                            <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                                <div class="shrink-0">{% include "icons/star-purple.html" %}</div>
+                                <span>Preis und Inhalte nach Absprache</span>
+                            </li>
+                        </ul>
+                        <a href="{% url 'contact_form' %}"
+                           class="px-3 py-2.5 font-semibold text-center text-gray-800 bg-blue-400 rounded-lg dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 focus:ring-2 dark:text-white dark:focus:ring-blue-900 focus-ring-blue-600">Kontakt</a>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        <div id="empty-checkout-modal"></div>
+    </div>
+{% endblock content %}

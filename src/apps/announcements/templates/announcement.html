@@ -1,0 +1,14 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Mitteilungen – Bajkal
+{% endblock title %}
+{% load markdown_extras %}
+{% block content %}
+    <div class="px-6 md:basis-10/12 basis-full lg:basis-7/12 xl:basis-6/12 md:pr-6">
+        {% include "layout/partials/page-title.html" with page_title="Mitteilungen" %}
+        <div class="flex flex-col pb-28 mt-8 space-x-0 space-y-8 w-full md:space-y-0 md:space-x-20 md:flex-row">
+            {% include "components/filter.html" with categories=categories %}
+            {% include "components/announcement-list.html" %}
+        </div>
+    </div>
+{% endblock content %}

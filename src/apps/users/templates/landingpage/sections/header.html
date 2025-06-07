@@ -1,0 +1,33 @@
+{% load static %}
+<nav class="flex fixed top-0 right-0 left-0 z-40 flex-col w-full text-gray-800 bg-white shadow-sm dark:text-white dark:bg-gray-950 dark:shadow-none"
+     id="landingheader">
+    {% include "landingpage/sections/banner.html" %}
+    <div class="flex justify-between items-center px-2 py-5 mx-auto w-full max-w-screen-xl">
+        <a href="{% url 'landingpage' %}"
+           class="flex justify-between items-center py-1 ml-1">
+            <img src="{% static 'svg/logo.svg' %}"
+                 class="mx-3"
+                 alt="Logo"
+                 height="40"
+                 width="40" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap">Bajkal</span>
+        </a>
+        <div class="hidden items-center space-x-10 font-medium md:flex">
+            <a href="#pricing" class="hover:text-blue-500">Kurse</a>
+            <a href="#features" class="hover:text-blue-500">So geht's</a>
+            <a href="#faq" class="hover:text-blue-500">Fragen</a>
+            <div id="toggle-color-mode" class="cursor-pointer"></div>
+        </div>
+        <div class="hidden items-center space-x-5 font-medium md:flex">
+            <a href="{% url 'signin' %}" class="hover:text-blue-500">Anmelden</a>
+            <a href="{% url 'signup' %}"
+               class="px-3 py-2.5 text-base font-semibold text-center text-white bg-blue-400 rounded-lg shadow-sm hover:bg-blue-500 dark:text-white dark:bg-blue-600 focus:ring-2 focus:outline-none dark:hover:bg-blue-500 hover-blue-400 dark:focus:ring-blue-700 focus:ring-blue-500 active:bg-blue-400">Konto
+            anlegen</a>
+        </div>
+        <div class="flex items-center space-x-3 font-medium md:hidden">
+            <div id="toggle-color-mode-mobile" class="cursor-pointer"></div>
+            <a href="{% url 'signin' %}"
+               class="inline-flex justify-center items-center px-3 py-1.5 text-base font-medium text-center text-blue-500 rounded-full border border-gray-200 shadow-sm dark:border-gray-700 focus:ring-2 dark:hover:bg-gray-700 hover:bg-gray-100 focus:ring-gray-800">Anmelden</a>
+        </div>
+    </div>
+</nav>

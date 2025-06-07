@@ -1,0 +1,26 @@
+{% load static %}
+<aside class="fixed top-0 left-0 z-40 h-full bg-white transition-transform -translate-x-full dark:bg-gray-950"
+       aria-label="Sidenav"
+       id="landing-drawer-navigation">
+    <div class="flex flex-col px-2 py-5 h-full">
+        <div class="w-44 basis-3/4">
+            <div class="flex flex-col items-center space-y-5 w-full h-full font-medium text-white dark:text-white">
+                <a href="{% url 'landingpage' %}"
+                   class="flex justify-between items-center mr-4">
+                    <img src="{% static 'svg/logo.svg' %}"
+                         class="p-1 mr-2"
+                         alt="Logo"
+                         height="50"
+                         width="50" />
+                    <span class="self-center text-2xl font-semibold text-white whitespace-nowrap dark:text-white">Bajkal</span>
+                </a>
+                <div class="flex flex-col justify-center space-y-4">
+                    <a href="{% url 'signin' %}" class="text-center">Anmelden</a>
+                    <a href="{% url 'signup' %}"
+                       class="inline-flex px-5 py-3 text-base font-medium text-center text-white bg-blue-400 rounded-lg dark:text-white dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 focus:ring-2 focus:ring-blue-700">Konto
+                    anlegen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>

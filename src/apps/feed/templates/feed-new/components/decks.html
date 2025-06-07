@@ -1,0 +1,26 @@
+{% for deck in new_decks %}
+    <a href="{% url 'study' deck.id %}"
+       {% if forloop.last %}hx-get="{% url 'new_decks' %}?action=next&page={{ page_obj.number|add:1 }}" hx-trigger="intersect" hx-vals='{"selected_course": "{{ selected_course }}"}' hx-swap="outerHTML" hx-target="#next-new-deck-page" {% endif %}
+       class="flex justify-between px-3 w-full text-base font-medium bg-white rounded-full border-gray-100 shadow-sm cursor-pointer hover:dark:bg-gray-800 dark:bg-gray-950 hover:bg-white hover:shadow">
+        <div class="flex items-center w-full">
+            <div class="p-3 text-white dark:text-blue-500">
+                {% with deck.course.name as level %}
+                    <div class="flex overflow-hidden justify-center items-center w-9 h-9 font-extrabold {% if level == 'A1' %}bg-blue-400 dark:bg-white {% else %}dark:bg-blue-500 dark:text-white border-blue-500 text-blue-500 border-2 {% endif %}rounded-full">
+                        {{ level }}
+                    </div>
+                {% endwith %}
+            </div>
+            <div class="py-3 text-gray-800 dark:text-gray-100">{{ deck.name|capfirst }}</div>
+        </div>
+        <div class="flex items-center px-5 font-medium text-center text-gray-800 dark:text-white">
+            {{ deck.initial_cards }}
+        </div>
+    </a>
+{% endfor %}
+{% if page_obj.has_next %}
+    <div class="flex justify-center py-10 w-full" id="next-new-deck-page">
+        <div class="w-6 h-6 dark:fill-white fill-gray-950 spinner loading-indicator">
+            {% include "icons/dots-circle.html" %}
+        </div>
+    </div>
+{% endif %}

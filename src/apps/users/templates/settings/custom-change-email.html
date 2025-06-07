@@ -1,0 +1,67 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    E-Mail-Adresse ändern – Bajkal
+{% endblock title %}
+{% block content %}
+    <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+        {% include "layout/partials/page-title.html" with page_title="E-Mail-Adresse ändern" %}
+        <div class="flex flex-col mt-8 space-y-5">
+            {% if new_emailaddress %}
+                <div class="p-3 px-6 bg-white rounded-lg dark:bg-gray-800">
+                    <p class="text-gray-800 dark:text-white">
+                        Zur Bestätigung Ihrer neuen E-Mail-Adresse "{{ new_emailaddress.email }}" klicken Sie auf den Link in
+                        Ihrem E-Mail-Postfach.
+                    </p>
+                </div>
+                <form method="post" action="{% url 'account_email' %}">
+                    {% csrf_token %}
+                    <div class="mt-2 space-y-2">
+                        <input type="hidden"
+                               name="email"
+                               value="{{ new_emailaddress.email }}"
+                               class="block p-2.5 w-full text-sm placeholder-gray-400 text-gray-800 bg-white rounded-lg border-gray-600 dark:text-white dark:bg-gray-950 dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:border-blue-400 focus:ring-blue-400">
+                        <button type="submit"
+                                name="action_send"
+                                class="px-3 py-2.5 mb-2 text-sm font-semibold text-gray-800 bg-white rounded-lg border-gray-600 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-2 me-2 dark:hover:bg-gray-700 hover:bg-gray-100 hover:border-gray-600 focus:ring-gray-600">
+                            Link erneut versenden
+                        </button>
+                        <button type="submit"
+                                name="action_remove"
+                                class="px-3 py-2.5 mb-2 text-sm font-semibold text-gray-800 bg-white rounded-lg border-gray-600 dark:text-white dark:bg-gray-800 focus:outline-none focus:ring-2 me-2 dark:hover:bg-gray-700 hover:bg-gray-100 hover:border-gray-600 focus:ring-gray-600">
+                            Verifizierung abbrechen
+                        </button>
+                    </div>
+                </form>
+            {% else %}
+                <form method="post"
+                      action="{% url 'account_email' %}"
+                      value="{{ current_emailaddress.email }}">
+                    {% csrf_token %}
+                    <div class="px-6 py-5 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800">
+                        <div class="space-y-2">
+                            <label for="id_email"
+                                   class="block mb-2 text-sm font-semibold text-gray-800 dark:text-white">
+                                E-Mail-Adresse:
+                            </label>
+                            <input type="email"
+                                   class="block p-2.5 w-full placeholder-gray-400 text-gray-800 bg-white rounded-lg border border-gray-200 shadow-sm dark:text-white dark:bg-gray-600 dark:border-gray-800 sm:text-sm dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:border-blue-400 focus:ring-blue-400"
+                                   name="email"
+                                   value="{{ current_emailaddress.email }}"
+                                   maxlength="320"
+                                   required=""
+                                   id="id_email">
+                        </div>
+                        <div class="flex justify-end mt-5">
+                            <a href="{% url 'settings' %}">{% include "layout/partials/abort-button.html" %}</a>
+                            <button type="submit"
+                                    name="action_add"
+                                    class="px-3 py-2.5 text-sm font-semibold text-white bg-blue-400 rounded-lg shadow-sm dark:text-white focus:ring-2 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 hover:bg-blue-500 focus:outline-none dark:focus:ring-blue-800 focus:ring-blue-600">
+                                Bestätigen
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

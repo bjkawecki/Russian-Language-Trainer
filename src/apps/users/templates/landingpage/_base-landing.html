@@ -1,0 +1,14 @@
+{% extends "landingpage/_base.html" %}
+{% load static %}
+{% include "landingpage/components/head.html" %}
+{% block body %}
+    <body class="flex flex-col flex-wrap justify-between min-h-screen bg-gray-50 dark:bg-gray-950 md:pb-0">
+        {% include "landingpage/sections/header.html" %}
+        {% block main %}
+        {% endblock main %}
+        {% include "landingpage/sections/footer.html" %}
+        <script src="{% static 'js/ui/color-mode.js' %}"></script>
+        <script src="{% static 'js/libs/flowbite.min.js' %}"></script>
+        <script src="{% static 'js/landing/scroll-event.js' %}"></script>
+    </body>
+{% endblock body %}

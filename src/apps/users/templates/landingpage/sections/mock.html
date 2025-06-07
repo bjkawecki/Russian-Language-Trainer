@@ -1,0 +1,60 @@
+<div class="px-6 py-4 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-800 dark:bg-gray-900 lg:basis-1/2 md:basis-3/4 basis-full h-fit">
+    <div class="overflow-hidden p-1 rounded">
+        <div class="flex justify-between items-center w-full">
+            <div class="text-gray-800 dark:text-white">
+                <span class="pr-1.5 text-blue-500">●</span>
+                <span class="text-sm">Bildung (1)</span>
+            </div>
+            <button id="dropdownMockStudyCardLink"
+                    data-dropdown-toggle="dropdownMockStudyCard"
+                    class="p-2 px-3 text-gray-800 rounded-lg border-gray-100 dark:text-white dark:border-gray-800 md:border-0 md:p-0 md:w-auto md:hover:text-blue-500 focus:dark:text-white dark:hover:bg-gray-700 hover:bg-gray-100 md:hover:bg-transparent">
+                <div class="w-6 h-6 dark:fill-gray-300 fill-gray-600">{% include "icons/dots-horizontal.html" %}</div>
+            </button>
+        </div>
+        <div id="dropdownMockStudyCard"
+             class="hidden z-10 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:border-gray-600 dark:bg-gray-700">
+            <ul class="py-2 text-sm text-gray-800 dark:text-white"
+                aria-labelledby="dropdownLargeButton">
+                <li class="block py-2 px-4 text-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600 hover:dark:text-white">
+                    Lösung: учиться
+                </li>
+            </ul>
+        </div>
+        <div class="flex flex-col items-center mt-3 md:mt-0">
+            <div class="flex flex-col justify-end mb-1 h-10 md:h-14 md:mb-2">
+                <h5 class="text-xl font-semibold tracking-tight text-center text-gray-700 dark:text-white md:text-2xl">
+                    lernen, studieren
+                </h5>
+            </div>
+            <div class="text-gray-600 dark:text-gray-400">
+                <span>Verb</span>
+                <span>(unvollendet)</span>
+            </div>
+        </div>
+        <div class="h-6"></div>
+        <div class="flex items-center mt-0 md:mt-5">
+            <input id="input"
+                   class="block p-2.5 my-2 w-full text-lg text-gray-800 bg-white rounded-lg border border-gray-200 dark:border-gray-700 placeholder:text-gray-300 dark:text-white dark:bg-gray-700 ps-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-blue-600 focus:border-blue-400"
+                   type="text"
+                   name="card_word_name"
+                   maxlength="50"
+                   required
+                   autocomplete="off">
+        </div>
+        <div>
+            <div id="nextReview" class="flex mb-3 h-6 text-sm text-gray-400 md:h-8"></div>
+            <div class="flex flex-row justify-between p-1">
+                <button type="button"
+                        id="showanswerbutton"
+                        class="px-3 py-2.5 text-sm font-semibold text-center text-gray-800 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-600 dark:text-gray-400 dark:bg-gray-900 focus:ring-2 focus:outline-none hover:dark:text-white hover:dark:bg-gray-800 dark:focus:ring-gray-700 focus:ring-gray-100 dark:active:bg-gray-700 active:bg-gray-100 hover:bg-gray-50">
+                    <div class="w-5 h-5 dark:fill-gray-400 fill-gray-600">{% include "icons/eye.html" %}</div>
+                </button>
+                <button type="button"
+                        id="studybutton"
+                        class="flex justify-center items-center px-3 py-2.5 w-24 h-10 text-sm font-semibold text-center text-white bg-blue-400 rounded-lg shadow-sm hover:bg-blue-500 focus:ring-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 dark:active:text-gray-300 focus:ring-2 focus:outline-none dark:focus:ring-blue-800">
+                    Prüfen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

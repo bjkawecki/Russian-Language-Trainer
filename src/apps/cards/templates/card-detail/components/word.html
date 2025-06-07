@@ -1,0 +1,15 @@
+<div class="flex flex-col px-10 py-5 font-normal text-gray-800 bg-white rounded-lg border border-gray-50 shadow-sm dark:text-white dark:border-none dark:bg-gray-900">
+    <h2 class="text-xl font-medium">{{ card.word.get_wordclass_display|title }}</h2>
+    {% if card.word.wordclass == "numeral" %}
+        {% include "card-detail/components/word/numeral.html" %}
+    {% elif card.word.wordclass == "preposition" %}
+        {% include "card-detail/components/word/preposition.html" %}
+    {% elif card.word.wordclass == "pronoun" %}
+        {% include "card-detail/components/word/pronoun.html" %}
+    {% elif card.word.wordclass == "substantive" %}
+        {% include "card-detail/components/word/substantive.html" %}
+    {% elif card.word.wordclass == "verb" %}
+        {% include "card-detail/components/word/verb.html" %}
+    {% endif %}
+</div>
+{% include "partials/audio-player-no-autoplay.html" %}

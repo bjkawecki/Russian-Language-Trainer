@@ -1,0 +1,13 @@
+<script>
+    function showLoadingSpinner() {
+        const elementId = "{{ elementId }}";
+        let new_decks_button = document.getElementById(elementId);
+        new_decks_button.innerHTML = `
+        <div class="flex justify-center w-full text-center">
+            <div class="w-6 h-6 dark:fill-white fill-gray-950 spinner">
+                {% include "icons/dots-circle.html" %}
+            </div>
+        </div>
+        `;
+    }
+</script>

@@ -1,0 +1,23 @@
+<div class="flex flex-col items-center mt-3 md:mt-0">
+    <div class="flex flex-col justify-end mb-1 h-8 md:h-20 lg:h-24 md:mb-2">
+        <h5 class="text-lg text-center text-gray-700 dark:text-white md:text-3xl">{{ translation }}</h5>
+    </div>
+    <div class="text-base text-gray-600 md:text-xl dark:text-gray-300">
+        {% if due_card.word.wordclass == "verb" %}
+            <span>{{ due_card.word.get_wordclass_display }}</span>
+            <span>({{ due_card.word.feature.get_aspect_display|default:"–" }}
+                {% if due_card.word.feature.is_motion_verb %}
+                    ,
+                    {{ due_card.word.feature.get_direction_display }}
+                {% endif %}
+            )</span>
+        {% elif due_card.word.wordclass == "pronoun" %}
+            <span>{{ due_card.word.feature.get_pronoun_type_display }}</span>
+        {% elif due_card.word.wordclass == "substantive" %}
+            <span>{{ due_card.word.get_wordclass_display }}</span>
+            {% comment %}<span>({{ due_card.word.feature.get_genus_display }})</span> {% endcomment %}
+        {% else %}
+            <span>{{ due_card.word.get_wordclass_display }}</span>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<div class="flex flex-col p-4 w-full h-60 bg-white rounded-lg shadow-sm dark:border-gray-900 dark:bg-gray-900">
+    <div class="flex justify-between items-center px-2 w-full text-gray-800 dark:text-white">
+        <div class="flex items-center py-2 pl-2 space-x-1 text-lg font-medium text-gray-800 dark:text-white"
+             id="barchartTitle">
+            <span class="w-6 h-6 rounded cursor-pointer hover:dark:bg-gray-700"
+                  id="prevButton">{% include "icons/chevron-left.html" %}</span>
+            <span id="barchart-data-month">{{ month.1 }} bis {{ month.0 }}</span>
+            <span class="hidden w-6 h-6 rounded cursor-pointer hover:dark:bg-gray-700"
+                  id="nextButton">{% include "icons/chevron-right.html" %}</span>
+        </div>
+    </div>
+    <div class="flex overflow-x-auto overflow-y-hidden justify-center max-w-xs sm:max-w-md md:max-w-full">
+        <div id="barchart-container">
+            <div class="w-6 h-6 dark:fill-white fill-gray-950 spinner loading-indicator">
+                {% include "icons/dots-circle.html" %}
+            </div>
+        </div>
+    </div>
+</div>

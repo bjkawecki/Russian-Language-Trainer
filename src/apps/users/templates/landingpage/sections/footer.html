@@ -1,0 +1,42 @@
+{% load static %}
+<footer class="p-4 mb-auto border-t border-gray-600 bg-gray-950 dark:bg-gray-950 sm:p-6">
+    <div class="mx-auto max-w-screen-lg">
+        <div class="items-center md:flex md:justify-between">
+            <div class="mb-6 space-y-4 md:mb-0">
+                <a href="https://flowbite.com" class="flex items-center">
+                    <img src="{% static 'svg/logo.svg' %}"
+                         class="me-3"
+                         alt="Logo"
+                         height="40"
+                         width="40" />
+                    <span class="self-center text-2xl font-semibold text-white whitespace-nowrap dark:text-white">Bajkal</span>
+                </a>
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm text-gray-300 dark:text-gray-300 sm:text-center">© 2024 Bajkal-App. Alle Rechte vorbehalten.</span>
+                </div>
+                <div class="sm:flex sm:items-center sm:justify-between">
+                    <span class="text-sm text-gray-300 dark:text-gray-300 sm:text-center">{{ version_info|default_if_none:"" }}</span>
+                </div>
+            </div>
+            <div class="flex">
+                <div>
+                    <h2 class="mb-4 text-sm font-semibold text-white uppercase dark:text-white">Rechtliches</h2>
+                    <ul class="space-y-2 text-gray-300 dark:text-gray-300">
+                        <li>
+                            <a href="{% url 'privacy' %}" class="hover:underline">Datenschutz</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'terms' %}" class="hover:underline">AGB</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'impressum' %}" class="hover:underline">Impressum</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'cancellation' %}" class="hover:underline">Widerrufsbelehrung</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>

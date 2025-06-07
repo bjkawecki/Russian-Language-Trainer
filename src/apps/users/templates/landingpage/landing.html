@@ -1,0 +1,14 @@
+{% extends "landingpage/_base-landing.html" %}
+{% block title %}
+    Bajkal Web App – Russisch lernen, aber richtig
+{% endblock title %}
+{% block main %}
+    {% include "landingpage/components/sidebar.html" %}
+    {% include "landingpage/sections/hero.html" %}
+    {% include "landingpage/sections/pricing.html" %}
+    {% include "landingpage/sections/features.html" %}
+    {% include "landingpage/sections/faq.html" %}
+    <section id="messages">
+        {% include "layout/partials/toast.html" %}
+    </section>
+{% endblock main %}

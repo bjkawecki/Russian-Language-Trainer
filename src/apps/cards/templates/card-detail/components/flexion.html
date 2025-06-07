@@ -1,0 +1,11 @@
+{% if card.word.wordclass == "adjective" %}
+    {% include "card-detail/components/flexion/adjective.html" %}
+{% elif card.word.wordclass == "numeral" %}
+    {% include "card-detail/components/flexion/numeral.html" %}
+{% elif card.word.wordclass == "pronoun" %}
+    {% include "card-detail/components/flexion/pronoun.html" %}
+{% elif card.word.wordclass == "substantive" %}
+    {% include "card-detail/components/flexion/substantive.html" %}
+{% elif card.word.wordclass == "verb" %}
+    {% include "card-detail/components/flexion/verb.html" %}
+{% endif %}

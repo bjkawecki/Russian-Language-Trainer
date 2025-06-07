@@ -1,0 +1,42 @@
+<div id="reset-usercard-modal"
+     tabindex="-1"
+     class="hidden overflow-y-auto overflow-x-hidden fixed inset-0 top-0 right-0 left-0 z-50 justify-center items-center w-full max-h-screen bg-white dark:bg-gray-950 /80">
+    <div class="relative px-5 w-full max-w-md max-h-full md:px-0">
+        <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-800">
+            <div class="flex justify-between items-center py-2 rounded-t-lg border-b border-gray-600 md:px-5">
+                <h3 class="px-6 text-lg font-semibold tracking-wide text-gray-800 dark:text-white">
+                    Fortschritt
+                    zurücksetzen
+                </h3>
+                <button type="button"
+                        class="inline-flex justify-center items-center w-8 h-8 text-sm text-gray-800 bg-transparent rounded-lg ms-auto hover:bg-gray-600 hover:dark:text-white"
+                        data-modal-hide="reset-usercard-modal">
+                    <span class="w-4 h-4 dark:fill-gray-300 fill-gray-600">
+                        {% include "icons/window-close.html"
+                        %}
+                    </span>
+                    <span class="sr-only">Close modal</span>
+                </button>
+            </div>
+            <div class="flex flex-col px-6 py-5 space-y-2">
+                <div class="text-gray-800 dark:text-white">Dieser Vorgang kann nicht rückgängig gemacht werden.</div>
+            </div>
+            <div class="flex justify-between items-center px-6 pb-5 rounded-b">
+                <form action="{% url 'card_details_reset' card.id %}"
+                      method="post"
+                      class="inline-flex">
+                    {% csrf_token %}
+                    <input data-modal-hide="reset-usercard-modal"
+                           type="submit"
+                           value="Jetzt zurücksetzen"
+                           class="items-center px-3 py-2.5 text-sm font-semibold text-center text-gray-800 rounded-lg cursor-pointer dark:text-white bg-red2-700 hover:dark:bg-red2-500 hover:bg-red2-400 focus:ring-2 focus:outline-none dark:focus:ring-red2-800 focus:ring-red2-600 me-2">
+                </form>
+                <button data-modal-hide="reset-usercard-modal"
+                        type="button"
+                        class="px-3 py-2.5 text-sm font-semibold text-gray-800 bg-white rounded-lg border border-gray-500 focus:ring-2 focus:outline-none focus:z-10 dark:bg-gray-800 dark:text-white hover:dark:text-white hover:bg-gray-600 focus:ring-gray-600">
+                    Abbrechen
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

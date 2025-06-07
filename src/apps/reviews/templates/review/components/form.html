@@ -1,0 +1,54 @@
+<form id="study_form"
+      method="post"
+      onsubmit="showspinner('studysubmitbutton')"
+      hx-swap="outerHTML"
+      hx-post="{{ request.get_full_path }}"
+      hx-target="#study_form"
+      hx-include="[name='due_card_id']">
+    {% csrf_token %}
+    <div class="h-4 md:h-8"></div>
+    <div class="flex items-center mt-0 md:mt-5">
+        <input id="id_card_word_name"
+               class="block p-2.5 my-2 w-full text-base text-gray-800 bg-white rounded-lg border border-gray-200 md:text-lg placeholder:text-gray-300 dark:text-white dark:bg-gray-700 ps-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500 focus:ring-blue-600 focus:border-blue-400 dark:border-gray-700"
+               required
+               autocomplete="off"
+               type="text"
+               name="card_word_name"
+               maxlength="50"
+               placeholder="Übersetzung eingeben">
+        <input type="hidden" value="{{ due_card.id }}" name="due_card_id">
+    </div>
+    <div>
+        <div class="flex mb-3 h-6 text-sm text-gray-400 md:h-12">
+            {% if due_card.word.comment %}
+                <div>
+                    <span class="px-1.5 mx-0.5 text-white bg-gray-400 rounded-full dark:text-gray-800">i</span>
+                    {{ due_card.word.comment }}
+                </div>
+            {% endif %}
+            {% if due_card.word.usage %}
+                <div>
+                    <span class="px-1.5 mx-0.5 text-white bg-gray-400 rounded-full dark:text-gray-800">i</span>
+                    {{ due_card.word.get_usage_display }}
+                </div>
+            {% endif %}
+        </div>
+        <div class="flex flex-row justify-between">
+            <button hx-post="{% if 'turbo' in request.path %}{% url 'skip_turbo' due_card.id %}{% else %}{% url 'skip' due_card.word.deck.id %}{% endif %}"
+                    hx-target="#study_form"
+                    hx-include="[name='due_card_id']"
+                    type="button"
+                    hx-swap="outerHTML"
+                    onclick="showspinner('skip_card_button')"
+                    id="skip_card_button"
+                    class="px-3 py-2.5 w-12 text-sm font-semibold text-center text-gray-800 bg-white rounded-lg border border-gray-200 shadow-sm dark:border-gray-600 dark:text-gray-400 dark:bg-gray-900 focus:ring-2 focus:outline-none hover:dark:text-white hover:dark:bg-gray-800 dark:focus:ring-gray-700 focus:ring-gray-100 dark:active:bg-gray-700 active:bg-gray-100 hover:bg-gray-50">
+                <div class="w-5 h-5 dark:fill-gray-400 fill-gray-600">{% include "icons/eye.html" %}</div>
+            </button>
+            <button type="submit"
+                    id="studysubmitbutton"
+                    class="flex justify-center items-center px-2 py-1.5 w-28 h-10 text-sm font-semibold text-center text-white bg-blue-400 rounded-lg md:py-2.5 md:w-32 md:px-3 hover:bg-blue-500 focus:ring-blue-600 dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 dark:active:text-gray-300 focus:ring-2 focus:outline-none dark:focus:ring-blue-800 dark:border-gray-600">
+                Prüfen
+            </button>
+        </div>
+    </div>
+</form>

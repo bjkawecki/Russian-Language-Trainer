@@ -1,0 +1,64 @@
+{% load static %}
+{% for course in not_user_courses %}
+    <div class="flex flex-col my-5 space-x-10 text-gray-800 dark:text-white">
+        <div class="flex flex-col p-6 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-800 md:flex-row">
+            <div class="flex flex-col pt-4 pb-2 space-y-5 border-t border-gray-600 md:pl-6 md:border-0 md:pt-0">
+                <div class="space-y-5 text-gray-800 dark:text-gray-100">
+                    <div>
+                        <h5 class="pb-0.5 text-2xl font-semibold tracking-wide text-gray-800 dark:text-white">
+                            Kurs
+                            {{ course.name }}
+                        </h5>
+                        <h6 class="text-lg text-gray-700 dark:text-gray-200">{{ course.get_name_display }}</h6>
+                    </div>
+                    <ul role="list" class="mx-auto space-y-2">
+                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                            <span>{{ course.all_cards }} Vokabeln aus {{ course.all_decks }} Themen</span>
+                        </li>
+                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                            <span>Wörterbuch mit grammatischen Formen</span>
+                        </li>
+                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                            <span>Audiodateien zum Nachhören der Aussprache</span>
+                        </li>
+                        <li class="flex items-center space-x-2 text-gray-800 dark:text-gray-100">
+                            <div>{% include "icons/check-decagram-green.html" %}</div>
+                            <span>Kostenlos</span>
+                        </li>
+                    </ul>
+                    <button hx-post="{% url 'subscribe' %}"
+                            hx-trigger="click"
+                            onclick="open_modal('subscribe_modal')"
+                            hx-include="[name=csrfmiddlewaretoken]"
+                            hx-swap="outerHTML"
+                            hx-target="#body"
+                            hx-vals='{"course_id": "{{ course.id }}"}'
+                            class="px-3 py-2.5 h-10 text-sm font-semibold text-white bg-blue-400 rounded-lg hover:bg-blue-500 dark:text-white dark:bg-blue-600 me-2 dark:hover:bg-blue-500 hover-blue-400 active:dark:bg-blue-600">
+                        Jetzt abonnieren
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+<div id="subscribe_modal"
+     data-modal-backdrop="static"
+     tabindex="-1"
+     aria-hidden="true"
+     class="hidden overflow-y-auto overflow-x-hidden fixed inset-0 top-0 right-0 left-0 z-50 justify-center items-center w-full bg-white/60 dark:bg-gray-900/60">
+    <div class="relative p-4 h-1/2 md:basis-1/3 basis-2/3">
+        <div class="flex justify-center">
+            <div class="flex flex-col justify-center items-center p-6 bg-white rounded-lg border border-gray-200 dark:border-gray-700 dark:bg-gray-950">
+                <h5 class="pb-2 text-xl font-bold tracking-tight text-gray-800 dark:text-white">
+                    Ihre Karten werden
+                    synchronisiert.
+                </h5>
+                <div class="w-6 h-6 dark:fill-white fill-gray-950 spinner">{% include "icons/dots-circle.html" %}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'js/ui/open_modal.js' %}"></script>

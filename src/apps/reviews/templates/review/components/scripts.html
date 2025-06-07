@@ -1,0 +1,17 @@
+<script>
+    function showspinner(id) {
+        let studysubmitbutton = document.getElementById("studysubmitbutton");
+        studysubmitbutton.disabled = true;
+        let skipbutton = document.getElementById(id);
+        skipbutton.innerHTML = `
+        <div class="w-5 h-5 dark:fill-white fill-white spinner">{% include "icons/dots-circle.html" %}</div>
+        `;
+        let studyinput = document.getElementById("id_card_word_name");
+        studyinput.classList.add("bg-gray-600", "cursor-not-allowed");
+    }
+</script>
+<script>
+    window.onload = function getFocus() {
+        document.getElementById("id_card_word_name").focus();
+    }
+</script>

@@ -1,0 +1,36 @@
+<div onmousedown='return false;'
+     onselectstart='return false;'
+     class="flex justify-center items-center h-6 text-xl font-semibold text-center dark:text-red2-500 text-red2-400 md:h-8">
+    {{ active_card.word__lemma_accent }}
+</div>
+<div class="flex items-center mt-0 md:mt-5">
+    <input id="id_card_word_name"
+           class="block p-2.5 my-2 w-full text-base bg-white rounded-lg border dark:text-red2-500 text-red2-400 border-red2-500 ps-2.5 dark:bg-gray-800 focus:ring-red2-500 focus:border-blue-500"
+           type="text"
+           name="card_word_name"
+           maxlength="50"
+           disabled
+           autocomplete="off">
+    <input type="hidden" value="{{ active_card.id }}" name="due_card_id">
+    <span class="-ml-9 w-6 h-6 fill-red2-500">{% include "icons/close-circle-outline.html" %}</span>
+</div>
+<div>
+    <div class="flex mb-3 h-6 text-sm text-gray-400 md:h-12">Nächste Abfrage: {{ interval }}</div>
+    <div class="flex flex-row justify-between">
+        {% include "partials/play_button.html" %}
+        <a href='{% if "turbo" in request.path %}{% url "turbo" %}{% else %}{% url "study" deck_id %}{% endif %}'
+           autofocus
+           onclick="showspinner('next_card_button')"
+           id="next_card_button"
+           class="flex justify-center items-center px-2 py-1.5 w-28 h-10 text-sm font-semibold text-white rounded-lg md:py-2.5 md:w-32 md:px-3 dark:text-white dark:bg-red2-500 bg-red2-400 hover:bg-red2-500 focus:ring-2 focus:outline-none dark:focus:ring-red2-800 focus:ring-red2-500">Nächste Karte</a>
+    </div>
+</div>
+{% include "partials/audio_player.html" %}
+<script>
+    function showspinner(id) {
+        let nextcardbutton = document.getElementById(id);
+        nextcardbutton.innerHTML = `
+        <div class="w-5 h-5 dark:fill-white fill-white spinner">{% include "icons/dots-circle.html" %}</div>
+        `;
+    }
+</script>

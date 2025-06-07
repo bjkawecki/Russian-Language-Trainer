@@ -1,0 +1,19 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Start | Bajkal
+{% endblock title %}
+{% load static %}
+{% block content %}
+    <div class="flex justify-around md:space-x-16 lg:space-x-24 lg:justify-end lg:basis-7/12 basis-full">
+        <div hx-trigger="load"
+             hx-get="{% if not has_due_decks %}{% url 'new_decks' %}{% else %}{% url 'due_decks' %}{% endif %}"
+             hx-swap="innerHTML"
+             class="md:basis-1/2 dark:bg-gray-950 basis-full">
+            {% include "feed/components/initial-nav.html" %}
+            {% include "feed/components/initial-spinner.html" %}
+        </div>
+        <div class="h-[50vh] md:flex md:flex-col hidden md:basis-1/4 lg:basis-1/4 xl:basis-1/4">
+            {% include "feed/components/widgets.html" %}
+        </div>
+    </div>
+{% endblock content %}

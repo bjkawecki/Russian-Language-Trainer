@@ -1,0 +1,33 @@
+<div class="flex flex-wrap gap-5 pt-2.5 text-xl md:gap-0 md:space-x-10">
+    {% if card.word.origin %}
+        {% include "card-detail/components/word/origin.html" %}
+    {% endif %}
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Genus</div>
+        <div>{{ card.word.feature.get_genus_display|default:"–" }}</div>
+    </div>
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Deklination</div>
+        <div>{{ card.word.feature.get_declination_class_display|default:"–" }}</div>
+    </div>
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Betonung</div>
+        <div>{{ card.word.feature.get_stress_display|default:"–" }}</div>
+    </div>
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Belebt</div>
+        <div>{{ card.word.feature.is_alive|yesno:"Ja,Nein" }}</div>
+    </div>
+    {% if card.word.feature.singulare_tantum %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Singularwort</div>
+            <div>{{ card.word.singulare_tantum|yesno:"ja,nein" }}</div>
+        </div>
+    {% endif %}
+    {% if card.word.feature.plurale_tantum %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Pluralwort</div>
+            <div>{{ card.word.plurale_tantum|yesno:"ja,nein" }}</div>
+        </div>
+    {% endif %}
+</div>

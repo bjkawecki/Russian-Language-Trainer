@@ -1,0 +1,35 @@
+{% load static %}
+<div class="h-4 md:h-8"></div>
+<div class="flex items-center mt-0 md:mt-5">
+    <input id="id_card_word_name"
+           disabled
+           class="block p-2.5 my-2 w-full text-base placeholder-gray-400 text-gray-800 bg-white rounded-lg border border-green-500 ring-2 ring-green-500 md:text-lg dark:text-white dark:bg-gray-800 ps-2.5 disabled"
+           type="text"
+           name="card_word_name"
+           maxlength="50"
+           required
+           autocomplete="off"
+           value="{{ active_card }}">
+    <input type="hidden" value="{{ active_card.word.id }}" name="due_card_id">
+    <span class="-ml-9 w-6 h-6 fill-green-500">{% include "icons/check-circle-outline.html" %}</span>
+</div>
+<div>
+    <div class="flex mb-3 h-6 text-sm text-gray-400 md:h-12">Nächste Abfrage: {{ interval }}</div>
+    <div class="flex flex-row justify-between">
+        {% include "partials/play_button.html" %}
+        <a href="{{ request.get_full_path }}"
+           autofocus
+           onclick="showspinner('next_card_button')"
+           id="next_card_button"
+           class="flex justify-center items-center px-2 py-1.5 w-28 h-10 text-sm font-semibold text-white bg-green-400 rounded-lg md:py-2.5 md:w-32 md:px-3 hover:bg-green-500 dark:text-white dark:bg-green-500 focus:ring-2 focus:outline-none dark:focus:ring-green-800 focus:ring-green-600 dark:hover:bg-green-400">Nächste Karte</a>
+    </div>
+</div>
+{% include "partials/audio_player.html" %}
+<script>
+    function showspinner(id) {
+        let nextcardbutton = document.getElementById(id);
+        nextcardbutton.innerHTML = `
+        <div class="w-5 h-5 dark:fill-white fill-white spinner">{% include "icons/dots-circle.html" %}</div>
+        `;
+    }
+</script>

@@ -1,0 +1,56 @@
+<div class="flex flex-wrap gap-5 pt-2.5 text-xl md:gap-0 md:space-x-10">
+    {% if card.word.origin %}
+        {% include "card-detail/components/word/origin.html" %}
+    {% endif %}
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Konjugation</div>
+        <div>{{ card.word.feature.get_conjugation_class_display|title|default:"–" }}</div>
+    </div>
+    {% if card.word.object_case %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Kasus des Objekts</div>
+            <div>{{ card.word.feature.get_object_case_display|title|default:"–" }}</div>
+        </div>
+    {% endif %}
+    {% if card.word.feature.preposition_set > 0 %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Präpositionen</div>
+            <div>
+                {% for preposition in card.word.feature.preposition_set.all %}
+                    {{ preposition.name }}
+                    {% if not forloop.last %},{% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    {% endif %}
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Aspekt</div>
+        <div>{{ card.word.feature.get_aspect_display|title|default:"–" }}</div>
+    </div>
+    {% if card.word.feature.partner %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Apektpartner</div>
+            <div>{{ card.word.feature.partner|default:"–" }}</div>
+        </div>
+    {% endif %}
+    <div class="flex flex-col space-y-0.5">
+        <div class="text-sm text-gray-600 dark:text-gray-300">Reflexiv</div>
+        <div>{{ card.word.feature.reflexive|yesno:"ja,nein"|default:"–" }}</div>
+    </div>
+    {% if card.word.feature.is_verb_of_motion %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Richtung</div>
+            <div>{{ card.word.feature.get_direction_display }}</div>
+        </div>
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Bewegunspartner</div>
+            <div>{{ card.word.feature.verb_of_motion_partner }}</div>
+        </div>
+    {% endif %}
+    {% if card.word.comment %}
+        <div class="flex flex-col space-y-0.5">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Kommentar</div>
+            <div>{{ card.word.comment }}</div>
+        </div>
+    {% endif %}
+</div>

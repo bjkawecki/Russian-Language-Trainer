@@ -1,0 +1,28 @@
+{% extends "layout/main.html" %}
+{% load static %}
+{% block title %}
+    Kurs Details – Bajkal
+{% endblock title %}
+{% block content %}
+    <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+        <div class="my-8 w-fit md:mb-8 md:mt-0">
+            <a href="{% url 'course_list' %}"
+               class="flex items-center space-x-1 text-sm font-medium text-blue2-500 font-base hover:text-blue2-400 fill-blue2-500 hover:fill-blue2-400">
+                <span class="w-4 h-4">{% include "icons/arrow-left.html" %}</span>
+                <span>Zur Übersicht</span>
+            </a>
+        </div>
+        <div class="flex flex-col mb-8 space-y-2">
+            <h1 class="text-3xl font-medium tracking-wide text-gray-800 dark:text-white">
+                Kurs: {{ course.name }} ({{ course.get_name_display }})
+            </h1>
+            <div class="flex space-x-1.5 text-xl tracking-wide text-gray-500 dark:text-gray-300">
+                <div>{{ course.all_decks }} Stapel,</div>
+                <div>{{ course.all_cards }} Karten</div>
+            </div>
+        </div>
+        <div class="flex flex-col pb-28 mt-4 space-y-4 w-full md:pb-0">
+            {% include "course-detail/partials/deck-list.html" %}
+        </div>
+    </div>
+{% endblock content %}

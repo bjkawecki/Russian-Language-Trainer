@@ -1,0 +1,53 @@
+{% extends "layout/main.html" %}
+{% load static %}
+{% block title %}
+    Kurse – Bajkal
+{% endblock title %}
+{% block content %}
+    {% if not user_courses %}
+        <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+            {% include "layout/partials/page-title.html" with page_title="Kein Kurs abonniert" %}
+            {% include "layout/partials/page-subtitle.html" with page_subtitle="Um einen Kurs zu erhalten, müssen Sie ein Abonnement abschließen." %}
+            {% include "course-list/components/not_user_courses.html" %}
+        {% else %}
+            <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+                {% include "layout/partials/page-title.html" with page_title="Meine Kurse" %}
+                <div class="flex flex-col mt-8 space-y-4">
+                    {% for course in user_courses %}
+                        <a href="{% url 'course_details' course.slug %}"
+                           class="flex items-center px-5 py-4 bg-white rounded-lg border border-gray-50 shadow-sm hover:shadow md:px-10 md:py-5 md:justify-between justify-normal hover:dark:bg-gray-800 dark:border-none dark:bg-gray-900">
+                            <div class="flex items-center space-x-6 md:space-x-12">
+                                <div class="flex items-center">
+                                    <span class="flex justify-center items-center w-8 h-8 font-bold text-center text-blue-500 rounded-full md:text-2xl md:w-14 md:h-14 dark:bg-blue-500 dark:text-white">{{ course.name }}</span>
+                                </div>
+                                <div class="flex space-x-4 text-lg text-gray-800 md:space-x-8 dark:text-white">
+                                    <div class="flex flex-col">
+                                        <div class="text-sm text-gray-600 dark:text-gray-300">Stapel</div>
+                                        <div class="text-base font-medium md:text-xl">{{ course.count_decks }}</div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="text-sm text-gray-600 dark:text-gray-300">Karten</div>
+                                        <div class="text-base font-medium md:text-xl">{{ course.count_words }}</div>
+                                    </div>
+                                    <div class="flex flex-col">
+                                        <div class="text-sm text-gray-600 dark:text-gray-300">Stufe</div>
+                                        <div class="text-base font-medium md:text-xl">{{ course.get_name_display }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% include "layout/partials/details-button.html" %}
+                        </a>
+                    {% endfor %}
+                </div>
+                {% if not_user_courses %}
+                    <div class="pb-28 mt-10 md:pb-0">
+                        <h2 class="space-y-2 text-xl font-medium tracking-wide text-gray-800 dark:text-white md:mt-0">
+                            Bereit für den nächsten Kurs?
+                        </h2>
+                        {% include "course-list/components/not_user_courses.html" %}
+                    </div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock content %}

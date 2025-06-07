@@ -1,0 +1,39 @@
+<div class="hidden z-50 my-4 w-56 text-base list-none bg-white rounded-lg divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600"
+     id="dropdown">
+    <div class="px-4 py-3">
+        <span class="block text-sm font-semibold text-gray-800 dark:text-white">{{ user.first_name }}
+        {{ user.last_name }}</span>
+        <span class="block text-sm text-gray-800 truncate dark:text-white">{{ user.get_username }}</span>
+    </div>
+    <ul class="py-1 text-gray-700 dark:text-gray-100"
+        aria-labelledby="dropdown">
+        <li>
+            <a href="{% url 'settings' %}"
+               class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white {% if "settings" in request.path %}bg-gray-100 dark:bg-gray-600 dark:text-white{% endif %}">Einstellungen</a>
+        </li>
+        {% if user.is_superuser %}
+            <li>
+                <a href="{% url 'data_import' %}"
+                   class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Datenimport</a>
+            </li>
+        {% endif %}
+    </ul>
+    <ul class="py-1 text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdown">
+        <li>
+            <a href="{% url 'help' %}"
+               class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white {% if "help" in request.path %}bg-gray-100 dark:bg-gray-600 dark:text-white{% endif %}">Hilfe</a>
+        </li>
+        <li>
+            <a href="{% url 'contact_form' %}"
+               class="flex items-center px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white {% if "contact-form" in request.path %}bg-gray-100 dark:bg-gray-600 dark:text-white{% endif %}">Kontakt</a>
+        </li>
+    </ul>
+    <ul class="py-1 text-gray-700 dark:text-gray-200"
+        aria-labelledby="dropdown">
+        <li>
+            <a href="{% url 'logout' %}"
+               class="block px-4 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Abmelden</a>
+        </li>
+    </ul>
+</div>

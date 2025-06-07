@@ -1,0 +1,24 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Karten – Bajkal
+{% endblock title %}
+{% block content %}
+    {% if not user.has_course %}
+        <div class="px-5 md:basis-9/12 lg:basis-7/12 xl:basis-6/12 2xl:basis-5/12 basis-full md:px-0">
+            {% include "layout/partials/page-title.html" with page_title="Keine Karten" %}
+            {% include "layout/partials/page-subtitle.html" with page_subtitle="Um Karten zu erhalten, müssen Sie ein Abonnement abschließen." %}
+        </div>
+    {% else %}
+        <div class="px-5 pb-28 md:pb-5 md:px-0 xl:basis-8/12 2xl:basis-6/12 basis-full lg:mb-0 h-fit">
+            {% include "layout/partials/page-title.html" with page_title="Wörterbuch" %}
+            {% include "card-list/components/filter.html" %}
+            {% include "card-list/components/table.html" %}
+            {% include "card-list/components/pagination.html" %}
+            <script>
+                function goToCardDetailsPage(url) {
+                    window.location.href = url;
+                }
+            </script>
+        {% endif %}
+    </div>
+{% endblock content %}

@@ -1,0 +1,25 @@
+<div class="flex justify-between items-center w-full">
+    <div class="flex items-center space-x-1 text-sm text-gray-700 md:text-base dark:text-white">
+        <span class="{% if due_card.state == 'initial' %}text-blue-500 {% elif due_card.state == 'in_progress' %}text-red-500 {% elif due_card.state == 'mastered' %}text-green-500 {% endif %}">●</span>
+        <span class="text-gray-500 dark:text-gray-400">
+            {{ due_card.word.deck.name|capfirst }}
+            {% if due_cards %}({{ due_cards }}){% endif %}
+        </span>
+    </div>
+    <button id="dropdownStudyCardLink"
+            data-dropdown-toggle="dropdownStudyCard"
+            class="text-gray-800 rounded border-gray-200 dark:text-white md:p-0 md:w-auto md:hover:text-blue-500 focus:dark:text-white dark:hover:bg-gray-700 md:hover:bg-transparent">
+        <div class="w-6 h-6 rounded md:w-7 md:h-7 dark:fill-gray-300 fill-gray-600 hover:bg-gray-100 hover:dark:bg-gray-800">
+            {% include "icons/dots-horizontal.html" %}
+        </div>
+    </button>
+</div>
+<div id="dropdownStudyCard"
+     class="hidden z-10 bg-white rounded-lg border border-gray-200 dark:border-gray-600 dark:bg-gray-700">
+    <ul class="text-sm text-gray-800 rounded-lg dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 dark:hover:text-white"
+        aria-labelledby="dropdownLargeButton">
+        <li>
+            <a href="{% url 'feed' %}" class="block px-4 py-2">Abbrechen</a>
+        </li>
+    </ul>
+</div>

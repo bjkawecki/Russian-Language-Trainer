@@ -1,0 +1,24 @@
+<div class="hidden overflow-hidden z-50 w-72 text-base list-none bg-white rounded-xl divide-y divide-gray-100 shadow dark:divide-gray-600 dark:bg-gray-900"
+     id="announcement-dropdown">
+    {% if not announcements_context %}
+        <div class="block py-2 text-center text-gray-700 dark:bg-gray-900 dark:text-gray-300">Keine neuen Mitteilungen</div>
+    {% else %}
+        <div class="block py-2 text-center text-gray-700 dark:bg-gray-900 dark:text-gray-200">Mitteilungen</div>
+        {% for item in announcements_context %}
+            <a href="{% url "announcement_list" %}#{{ item.announcement.id }}"
+               class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                <div class="space-y-2 w-full">
+                    <div class="space-y-1 text-sm font-normal text-gray-500 dark:text-gray-50">
+                        <span class="px-1 py-0.5 text-xs  text-white {% if item.announcement.category == 1 %}bg-blue-500 {% elif item.announcement.category == 2 %}bg-orange-600 {% elif item.announcement.category == 3 %}bg-red2-700 {% endif %}rounded w-fit">{{ item.announcement.get_category_display }}</span>
+                        <div class="text-gray-800 dark:text-white">{{ item.announcement.title }}</div>
+                        <div class="text-xs font-medium text-gray-300 dark:text-gray-300">{{ item.announcement.get_date_label }}</div>
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+    {% endif %}
+    <a href="{% url "announcement_list" %}"
+       class="block py-2 text-center text-gray-800 text-md dark:hover:bg-gray-700 hover:text-blue2-500 dark:bg-gray-900 dark:text-gray-200">
+        <div class="inline-flex items-center">Alle ansehen</div>
+    </a>
+</div>

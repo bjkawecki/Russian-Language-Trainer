@@ -1,0 +1,8 @@
+<div class="{% if "review" in request.path %}hidden {% endif %}fixed z-40 bottom-0 w-full bg-gray-100 dark:text-white dark:bg-gray-800 md:hidden">
+    <div class="flex justify-evenly text-sm">
+        {% include "layout/navbar/partials/nav-link-bottom.html" with url="feed" path="feed" link_text="Start" icon="icons/home.html" %}
+        {% include "layout/navbar/partials/nav-link-bottom.html" with url="course_list" path="course" link_text="Kurse" icon="icons/list.html" %}
+        {% include "layout/navbar/partials/nav-link-bottom.html" with url="card_list" path="card" link_text="Wörterbuch" icon="icons/dict.html" %}
+        {% include "layout/navbar/partials/nav-link-bottom.html" with url="progress" path="progress" link_text="Fortschritt" icon="icons/chart-line.html" %}
+    </div>
+</div>

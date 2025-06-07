@@ -1,0 +1,32 @@
+services:
+  webapp_stage:
+    restart: always
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    entrypoint: ["/bin/bash", "-e", "entrypoint.sh"]
+    command: > 
+      gunicorn config.wsgi:application
+      --bind [::]:8001
+      --worker-tmp-dir /dev/shm
+      --timeout 300
+      --workers 3
+    volumes:
+      - bajkal_stage_volume:/volume
+    ports:
+      - 8001:8001
+
+  nginx_stage:
+    restart: always
+    build:
+      context: .
+      dockerfile: nginx/Dockerfile.stage
+    volumes:
+      - bajkal_stage_volume:/volume
+      - nginx_stage_logs:/var/log/nginx
+    depends_on:
+      - webapp_stage
+
+volumes:
+  bajkal_stage_volume:
+  nginx_stage_logs:

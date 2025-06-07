@@ -1,0 +1,26 @@
+{% load markdown_extras %}
+<div id="announcementsContainer"
+     class="flex flex-col space-y-5 basis-full">
+    {% if not announcements %}
+        <div class="text-center text-white">Keine Mitteilungen</div>
+    {% else %}
+        {% for user_announcement in announcements %}
+            <div>
+                <div class="block invisible -mt-20 h-20"
+                     id="{{ user_announcement.announcement.id }}"></div>
+                <div class="flex flex-col px-6 py-6 space-y-5 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:bg-gray-900">
+                    <div class="flex flex-col justify-between">
+                        <div class="flex flex-col justify-center space-y-2">
+                            <span class="px-1 py-0.5 text-xs text-white {% if user_announcement.announcement.category == 1 %}bg-blue-500 {% elif user_announcement.announcement.category == 2 %}bg-orange-600 {% elif user_announcement.announcement.category == 3 %}bg-red2-700 {% endif %}rounded w-fit">{{ user_announcement.announcement.get_category_display }}</span>
+                            <h2 class="text-2xl text-gray-800 dark:text-white">{{ user_announcement.announcement.title|safe }}</h2>
+                            <span class="text-sm text-gray-600 dark:text-gray-300">{{ user_announcement.announcement.starting_at|date:"SHORT_DATE_FORMAT" }}</span>
+                        </div>
+                    </div>
+                    <div class="text-base text-gray-700 dark:text-gray-100 markdown-style">
+                        {{ user_announcement.announcement.message|markdown|safe }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+</div>

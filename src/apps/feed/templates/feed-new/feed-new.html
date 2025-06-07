@@ -1,0 +1,14 @@
+<div id="new_decks">
+    {% include "feed-new/components/nav.html" %}
+    <div class="basis-full">
+        {% if not new_decks %}
+            {% include "feed-new/components/no-decks.html" %}
+        {% else %}
+            {% include "feed-new/components/header.html" %}
+            <div class="my-5 md:h-[70vh] overflow-y-auto pe-2 pb-28 md:pb-0">
+                <div class="space-y-2 w-full">{% include "feed-new/components/decks.html" %}</div>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% include "partials/loading-spinner.html" with elementId="due-decks-button" %}

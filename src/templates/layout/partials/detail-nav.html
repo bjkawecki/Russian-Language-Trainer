@@ -1,0 +1,10 @@
+<nav class="flex" aria-label="Breadcrumb">
+    <ol class="inline-flex items-center rtl:space-x-reverse">
+        <li aria-current="page">
+            <a href="{% url url %}">
+                <span class="font-semibold text-gray-600 dark:text-gray-400 hover:text-gray-500">{{ model_name }}</span>
+            </a>
+        </li>
+        <li>{% include "partials/breadcrumb-details.html" %}</li>
+    </ol>
+</nav>

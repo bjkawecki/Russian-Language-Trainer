@@ -1,0 +1,22 @@
+{% extends "layout/main.html" %}
+{% load static %}
+{% block title %}
+    Karte Details – Bajkal
+{% endblock title %}
+{% block content %}
+    <div class="px-5 pb-28 md:basis-10/12 lg:basis-8/12 xl:basis-6/12 basis-full md:px-0">
+        <div class="my-8 w-fit md:mb-8 md:mt-0">{% include "card-detail/partials/back-link.html" %}</div>
+        <div class="flex items-center px-10 py-5 mb-5 space-x-8 bg-white rounded-lg dark:bg-gray-900">
+            {% include "card-detail/partials/play-button.html" %}
+            {% include "card-detail/components/word/header.html" with lemma_accent=card.word.lemma_accent translation=translation %}
+        </div>
+        <div class="overflow-y-auto pb-28 space-y-5">
+            {% include "card-detail/components/word.html" %}
+            {% include "card-detail/components/flexion.html" %}
+            {% include "card-detail/components/card.html" %}
+            {% if card.word.example_set.count > 0 %}
+                {% include "card-detail/components/examples.html" %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock content %}

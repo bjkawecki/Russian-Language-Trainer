@@ -1,0 +1,33 @@
+<div class="flex flex-col p-3 text-gray-800 bg-white rounded-lg border border-gray-50 shadow-sm dark:border-none dark:text-white dark:bg-gray-800">
+    <div class="flex col-span-1 px-3 py-1.5">
+        <div class="text-lg font-semibold text-gray-800 dark:text-gray-100">App</div>
+    </div>
+    <div class="col-span-4">
+        <a href="{% url 'change_steps' %}">
+            <div class="flex justify-between items-center px-3 py-1.5 mb-2 rounded-lg dark:hover:bg-gray-600 hover:bg-gray-50">
+                <div class="flex flex-col">
+                    <div class="text-sm text-gray-600 dark:text-gray-300">Lernschritte</div>
+                    <div class="font-medium text-gray-800 dark:text-white">
+                        {% for step in steps %}
+                            {% if not forloop.last %}
+                                {{ step }},
+                            {% else %}
+                                {{ step }}
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </div>
+                {% include "icons/menu-right.html" %}
+            </div>
+        </a>
+        <a href="{% url 'change_deck_name_language' %}">
+            <div class="flex justify-between items-center px-3 py-1.5 mb-2 rounded-lg dark:hover:bg-gray-600 hover:bg-gray-50">
+                <div class="flex flex-col">
+                    <div class="text-sm text-gray-600 dark:text-gray-300">Stapelname</div>
+                    <div class="font-medium text-gray-800 dark:text-white">{{ user.is_deck_name_russian|yesno:"Russisch,Deutsch" }}</div>
+                </div>
+                {% include "icons/menu-right.html" %}
+            </div>
+        </a>
+    </div>
+</div>

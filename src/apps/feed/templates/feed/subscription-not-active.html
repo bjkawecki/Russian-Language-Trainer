@@ -1,0 +1,27 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Bajkal
+{% endblock title %}
+{% load static %}
+{% block content %}
+    <div class="px-4 rounded-lg md:basis-6/12 basis-full h-fit">
+        {% include "layout/partials/page-title.html" with page_title="Ihr Abonnement ist nicht aktiv" %}
+        {% include "layout/partials/page-subtitle.html" with page_subtitle="Sie können den Status Ihres Abonnements im Kundenportal überprüfen." %}
+        <div>
+            <a href="{% url 'subscription_settings' %}">
+                <button class="px-4 py-2 text-sm font-semibold text-gray-800 bg-blue-400 rounded-lg dark:text-white dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 active:dark:bg-blue-600">
+                    Abonnement verwalten
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="sticky h-[calc(100vh-100px)] pl-8 pr-4 md:flex md:flex-col hidden basis-3/12">
+        {% include "layout/widgets.html" %}
+    </div>
+    {% if show_welcome_modal %}
+        <div hx-trigger="load"
+             hx-get="{% url 'show_welcome_modal' %}"
+             hx-swap="outerHTML"
+             hx-target="#welcome-modal-content">{% include "welcome_modal.html" %}</div>
+    {% endif %}
+{% endblock content %}

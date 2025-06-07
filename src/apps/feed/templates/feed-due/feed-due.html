@@ -1,0 +1,10 @@
+<div id="due_decks" class="md:basis-1/3 dark:bg-gray-950 basis-full">
+    {% include "feed-due/components/nav.html" %}
+    {% if not due_deck_list %}
+        {% include "feed-due/components/no-decks.html" %}
+    {% else %}
+        {% include "feed-due/components/header.html" %}
+        {% include "feed-due/components/decks.html" %}
+    {% endif %}
+</div>
+{% include "partials/loading-spinner.html" with elementId="new-decks-button" %}

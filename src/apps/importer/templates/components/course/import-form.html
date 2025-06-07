@@ -1,0 +1,28 @@
+{% load static %}
+<form class="px-8 py-6 mx-auto mt-8 bg-white rounded-lg dark:bg-gray-900"
+      hx-encoding="multipart/form-data"
+      method="post"
+      hx-push-url="true"
+      hx-post="{% url 'import_course' %}"
+      hx-target="#body"
+      hx-swap="outerHTML"
+      onsubmit="open_create_course_modal()">
+    {% csrf_token %}
+    <div class="mb-4">
+        <label class="block mb-2 font-semibold text-gray-800 dark:text-white"
+               for="id_json_file">Kurse JSON-Datei</label>
+        <input class="block w-full text-sm placeholder-gray-400 text-gray-800 bg-white rounded-lg border border-gray-200 cursor-pointer dark:border-none dark:text-white dark:bg-gray-700 focus:outline-none"
+               aria-describedby="user_avatar_help"
+               id="id_json_file"
+               type="file"
+               required
+               name="json_file">
+    </div>
+    <div class="flex justify-end">
+        <button type="submit"
+                class="px-3 py-2 text-sm font-semibold text-white bg-blue-400 rounded-lg dark:bg-blue-600 focus:ring-2 me-2 dark:hover:bg-blue-700 hover:bg-blue-500 focus:outline-none dark:focus:ring-blue-800 focus:ring-blue-600"
+                id="loading_after_submit_button_">Senden</button>
+    </div>
+</form>
+{% include "components/course/import-modal.html" %}
+<script src="{% static 'js/ui/uploadCourseDataModal.js' %}"></script>

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="Russische Vokabeln lernen mit System.">
+        <meta name="keywords" content="Russisch, Vokabeln, Lernen, System">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="google-site-verification"
+              content="4m3FqUhCn9avn5GQkw7iJwSeHHeXY9E2oAlCW7DwW24" />
+        <title>
+            {% block title %}
+                Bajkal
+            {% endblock title %}
+        </title>
+        <link rel="stylesheet" href="{% static 'css/output.css' %}">
+        <link rel="shortcut icon"
+              type="image/png"
+              href="{% static 'images/favicon.ico' %}" />
+        <script type="text/javascript">
+            let root = document.getElementsByTagName('html')[0];
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                root.classList.add("dark");
+                localStorage.theme = 'dark';
+            } else {
+                root.classList.remove("dark");
+                localStorage.theme = 'light';
+            }
+        </script>
+        <script src="https://cdn.satsu.pro/tracker.js" data-site="ZI3TuVMYzW"></script>
+    </head>
+    {% block body %}
+    {% endblock body %}
+</html>

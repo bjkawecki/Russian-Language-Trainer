@@ -1,0 +1,42 @@
+<div class="flex flex-col gap-8 justify-between items-start px-10 pt-5 pb-3 font-normal text-gray-800 bg-white rounded-lg border border-gray-50 shadow-sm md:flex-row md:items-center md:gap-0 dark:text-white dark:border-none dark:bg-gray-900">
+    <div class="flex flex-row flex-wrap gap-5 space-x-0 text-lg md:gap-0">
+        <div class="flex flex-col justify-between pb-2 space-y-0.5 pe-10">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Kurs</div>
+            <a class="text-blue-400 hover:underline underline-offset-2 dark:text-blue2-500"
+               href="{% url 'course_details' card.word.course.slug %}">{{ card.word.course.name }}</a>
+        </div>
+        <div class="flex flex-col justify-between pb-2 space-y-0.5 pe-10">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Stapel</div>
+            <a class="p-0 text-blue-400 hover:underline underline-offset-2 dark:text-blue2-500"
+               href="{% url 'deck_details' card.word.deck.slug %}">{{ card.word.deck.name|capfirst }}</a>
+        </div>
+        <div class="flex flex-col justify-between pb-2 space-y-0.5 pe-10">
+            <div class="text-sm text-gray-600 dark:text-gray-300">Status</div>
+            {% if card.state == "initial" %}
+                <div class="px-1.5 text-base text-gray-100 bg-blue-600 rounded h-fit w-fit">Neu</div>
+            {% elif card.state == "mastered" %}
+                <div class="px-1.5 text-base text-gray-100 bg-green-400 rounded h-fit w-fit">Gemeistert</div>
+            {% else %}
+                <div class="px-1.5 text-base text-gray-100 rounded bg-red2-600 h-fit w-fit">Aktiv</div>
+            {% endif %}
+        </div>
+        <div class="flex flex-col justify-between pb-2 space-y-0.5 pe-10">
+            <div class="text-sm text-gray-600 dark:text-gray-300">
+                {% if card.state == "initial" %}
+                    Hinzugefügt
+                {% else %}
+                    Fällig
+                {% endif %}
+            </div>
+            <div>{{ card.due_date|date:"d.m.Y" }}</div>
+        </div>
+    </div>
+    <div class="flex justify-center items-start w-full rounded-lg md:w-fit md:justify-start">
+        <button class="px-2.5 py-1.5 rounded-lg hover:shadow dark:bg-gray-700 border border-gray-200 dark:border-gray-600 {% if card.state == "initial" %}hover:shadow-none cursor-not-allowed  dark:text-gray-400 text-gray-400 font-normal {% else %}hover:bg-gray-50 text-gray-800 dark:text-gray-100  hover:dark:bg-gray-600{% endif %}"
+                type="button"
+                {% if card.state == "initial" %}disabled{% endif %}
+                data-modal-target="reset-usercard-modal"
+                data-modal-toggle="reset-usercard-modal">Zurücksetzen</button>
+    </div>
+</div>
+{% include "card-detail/components/reset_usercard_modal.html" %}

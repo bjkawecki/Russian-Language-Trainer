@@ -1,0 +1,14 @@
+{% extends "layout/main.html" %}
+{% block title %}
+    Bajkal
+{% endblock title %}
+{% load static %}
+{% block content %}
+    <div class="flex justify-end px-5 md:space-x-16 lg:space-x-5 lg:justify-end lg:basis-7/12 basis-full">
+        <div>
+            {% include "layout/partials/page-title.html" with page_title="Keine Lernkarten" %}
+            {% include "layout/partials/page-subtitle.html" with page_subtitle="Um Stapel mit Lernkarten zu erhalten, müssen Sie ein Abonnement abschließen." %}
+        </div>
+        <div class="h-[50vh] md:flex md:flex-col hidden md:basis-1/4">{% include "feed/components/widgets.html" %}</div>
+    </div>
+{% endblock content %}

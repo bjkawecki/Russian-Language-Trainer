@@ -1,0 +1,34 @@
+<div class="flex flex-col px-8 py-10 text-center text-gray-800 bg-white rounded-lg dark:text-white dark:bg-gray-800">
+    <div class="flex flex-col h-20">
+        <h3 class="mb-1 text-2xl font-semibold">Förderer</h3>
+        <p class="text-lg font-normal text-gray-600 dark:text-gray-300">Für Unterstützer unseres Unternehmens</p>
+    </div>
+    <div class="flex justify-center items-center py-12 h-20">
+        <div>
+            <span class="mr-2 text-4xl font-bold">50 €</span>
+        </div>
+        <span class="pl-1 text-xl text-gray-400">/ Monat</span>
+    </div>
+    <div class="flex flex-col justify-between h-full min-h-52">
+        <ul role="list" class="mb-5 space-y-2 text-lg text-left">
+            <li class="flex items-center space-x-2 font-semibold text-gray-800 dark:text-gray-100">
+                <div>{% include "icons/check-decagram-green.html" %}</div>
+                <span>Alle Kurse, Stapel und Vokabeln</span>
+            </li>
+            <li class="flex items-center space-x-2 font-semibold text-gray-800 dark:text-gray-100">
+                <div>{% include "icons/check-decagram-green.html" %}</div>
+                <span>Wörterbuch, Aussprache, Beispiele</span>
+            </li>
+            <li class="flex items-center space-x-2 font-semibold text-gray-800 dark:text-gray-100">
+                <div>{% include "icons/plus-circle-yellow.html" %}</div>
+                <span>Stärkung unserer Finanzplanung</span>
+            </li>
+            <li class="flex items-center space-x-2 font-semibold text-gray-800 dark:text-gray-100">
+                <div>{% include "icons/plus-circle-yellow.html" %}</div>
+                <span>Sofortiger Zugriff auf neue Inhalte</span>
+            </li>
+        </ul>
+        <button class="px-3 py-2.5 font-semibold text-center text-gray-800 bg-blue-400 rounded-lg submitSubscriptionButton dark:bg-blue-600 dark:hover:bg-blue-500 hover-blue-400 focus:ring-2 dark:text-white dark:focus:ring-blue-900 focus-ring-blue-600 disabled:hover:dark:bg-blue-600 disabled:cursor-not-allowed"
+                disabled>Jetzt abonnieren</button>
+    </div>
+</div>
