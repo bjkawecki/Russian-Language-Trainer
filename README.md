@@ -12,25 +12,25 @@
 
 ![logo](assets/logo.png)
 
-**Bajkal** ist eine Webanwendung zum Russischlernen. Sie kombiniert moderne Sprachlerntechniken wie Spaced Repetition, automatisierte Lernstapel, Audio-Unterstützung und Fortschrittsverfolgung und beinhaltet App-Features wie Kursbuchung und Benutzerkonten.
+**Bajkal** is a web application for learning Russian. It combines modern language learning techniques such as spaced repetition, automated learning decks, audio support, and progress tracking, and includes app features like course booking and user accounts.
 
 ---
 
 ## Features
 
-- **Vokabeltrainer** mit _Spaced Repetition_
-- **Automatisch erzeugte Lernstapel** (Feed)
-- **Integriertes Wörterbuch** mit Suchfunktion
-- **Audio-Aussprache** für Vokabeln
-- **Lernfortschrittsanzeige**
-- **Benutzerkonten** & **Kurse buchen** (aktuell A1 & A2)
-- **Mobile-optimiertes Frontend**
+- **Vocabulary trainer with spaced repetition**
+- **Automatically generated learning decks** (feed)
+- **Integrated dictionary with search functionality**
+- **Audio pronunciation for vocabulary**
+- **Learning progress tracking**
+- **User accounts & course booking** (currently A1 & A2)
+- **Mobile-optimized frontend**
 
-Geplant:
+Planned:
 
-- Öffentliche Wörterbuchseite
-- Grammatiktrainer
-- Erweiterung auf Kursniveau C1
+- Public dictionary page
+- Grammar trainer
+- Expansion to course level C1
 
 ---
 
@@ -38,6 +38,6 @@ Geplant:
 
 - **Backend:** Django + Gunicorn
 - **Frontend:** Django Templates + HTMX
-- **Datenbank:** PostgreSQL
+- **Database:** PostgreSQL
 - **Queueing:** Redis + Celery
-- **Deployment:** Docker Compose mit Nginx Reverse Proxy
+- **Deployment:** Docker Compose + Nginx Reverse Proxy
