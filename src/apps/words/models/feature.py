@@ -13,7 +13,7 @@ class AdjectiveFeature(Feature):
 
 
 class AdverbFeature(Feature):
-    preposition = models.CharField("Steigerbar", default=False)
+    preposition = models.CharField("Präposition", max_lenth=50)
 
     class Meta:
         app_label = "words"
